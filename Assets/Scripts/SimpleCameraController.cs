@@ -51,7 +51,6 @@ namespace UnityTemplateProjects
                 y = Mathf.Lerp(y, target.y, positionLerpPct);
                 z = Mathf.Lerp(z, target.z, positionLerpPct);
             }
-
             public void UpdateTransform(Transform t)
             {
                 t.eulerAngles = new Vector3(pitch, yaw, roll);
@@ -170,21 +169,21 @@ namespace UnityTemplateProjects
             }
 #endif
             return direction;
-        }
-        
+        }        
 
         public void OnLeaveGameButtonClicked()
         {
             PhotonNetwork.LeaveRoom();
         }
-
-      /*  public override void OnLeftRoom()
+        /*
+        public override void OnLeftRoom()
 		{
 			Debug.Log("OnLeftRoom");
 
-			*//*SceneManager.LoadScene("index");*//*
+			SceneManager.LoadScene("index");
 		}
-            */
+        */
+
         void Update()
         {
             // Exit Sample  
@@ -222,7 +221,6 @@ namespace UnityTemplateProjects
                 m_TargetCameraState.yaw += mouseMovement.x * mouseSensitivityFactor;
                 m_TargetCameraState.pitch += mouseMovement.y * mouseSensitivityFactor;
             }
-            
             // Translation
             var translation = GetInputTranslationDirection() * Time.deltaTime;
 
@@ -264,7 +262,6 @@ namespace UnityTemplateProjects
             return new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * 10;
 #endif
         }
-
         bool IsBoostPressed()
         {
 #if ENABLE_INPUT_SYSTEM
@@ -276,7 +273,6 @@ namespace UnityTemplateProjects
 #endif
 
         }
-
         bool IsEscapePressed()
         {
 #if ENABLE_INPUT_SYSTEM
@@ -285,7 +281,6 @@ namespace UnityTemplateProjects
             return Input.GetKey(KeyCode.Escape);
 #endif
         }
-
         bool IsCameraRotationAllowed()
         {
 #if ENABLE_INPUT_SYSTEM
@@ -296,7 +291,6 @@ namespace UnityTemplateProjects
             return Input.GetMouseButton(1);
 #endif
         }
-
         bool IsRightMouseButtonDown()
         {
 #if ENABLE_INPUT_SYSTEM
@@ -392,7 +386,7 @@ namespace UnityTemplateProjects
 
         public void OnLeftRoom()
         {
-            Debug.Log("OnLeftRoom");
+            Debug.Log("OnLeftRoom!!!!!!!!!!!");
 
             SceneManager.LoadScene("index");
         }
