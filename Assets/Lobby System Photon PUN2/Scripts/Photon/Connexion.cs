@@ -31,6 +31,12 @@ namespace Photon.Pun.LobbySystemPhoton
 			if (!playerName.Equals(""))
 			{
 				PhotonNetwork.LocalPlayer.NickName = playerName;
+
+				PhotonNetwork.OfflineMode = false; //true would "fake" an online connection
+				// PhotonNetwork.NickName = "PlayerName"; //we can use a input to change this 
+				PhotonNetwork.AutomaticallySyncScene = true; //To call PhotonNetwork.LoadLevel()
+				PhotonNetwork.GameVersion = "v1";
+
 				PhotonNetwork.ConnectUsingSettings();
 
 				Template.instance.InputPanel.SetActive(false);

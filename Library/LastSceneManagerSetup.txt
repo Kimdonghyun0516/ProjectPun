@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/Lobby System Photon PUN2/Scene/index.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
