@@ -167,7 +167,7 @@ namespace ChiliGames.VROffice
         }
         private void Update()
         {
-            if (IsLeftMouseButtonDown())
+            /*if (IsLeftMouseButtonDown())
             {
                 Debug.Log("MouseDown");
                 Debug.Log(string.Format("Mouse position x={0} y={1}",
@@ -183,7 +183,7 @@ namespace ChiliGames.VROffice
                     new float[] { 1.0f - pos.x, 1.0f - pos.y },
                     50,
                     new float[] { color.r, color.g, color.b });
-            }
+            }*/
         }
     }
 }

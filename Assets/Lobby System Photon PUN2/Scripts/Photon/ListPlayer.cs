@@ -18,7 +18,7 @@ namespace Photon.Pun.LobbySystemPhoton
 		{
 			return;
 
-			Template.instance.ListRoomPanel.SetActive(false);
+			/*Template.instance.ListRoomPanel.SetActive(false);
 			Template.instance.RoomPanel.SetActive(true);
 
 			if (playerListEntries == null)
@@ -41,7 +41,7 @@ namespace Photon.Pun.LobbySystemPhoton
 				playerListEntries.Add(p.ActorNumber, entry);
 			}
 			Template.instance.TitleRoom.text = PhotonNetwork.CurrentRoom.Name;
-			chat.SendMsgConnection(PhotonNetwork.LocalPlayer.NickName);
+			chat.SendMsgConnection(PhotonNetwork.LocalPlayer.NickName);*/
 		}
 
 		public override void OnPlayerEnteredRoom(Player newPlayer)

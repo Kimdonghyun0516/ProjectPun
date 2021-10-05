@@ -2,12 +2,16 @@
 using UnityEngine.InputSystem;
 #endif
 
+using ExitGames.Client.Photon;
 using Photon.Pun;
+using Photon.Realtime;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace UnityTemplateProjects
 {
-    public class SimpleCameraController : MonoBehaviour
+    public class SimpleCameraController : MonoBehaviour, IInRoomCallbacks, IMatchmakingCallbacks, ILobbyCallbacks
     {
         class CameraState
         {
@@ -116,9 +120,16 @@ namespace UnityTemplateProjects
             boostFactorAction.Enable();
         }
 #endif
+     
+        public void OnDisable()
+        {
+            PhotonNetwork.RemoveCallbackTarget(this);
+        }
 
         void OnEnable()
         {
+            PhotonNetwork.AddCallbackTarget(this);
+
             m_TargetCameraState.SetFromTransform(transform);
             m_InterpolatingCameraState.SetFromTransform(transform);
             Debug.Log("OnEnable");
@@ -162,13 +173,24 @@ namespace UnityTemplateProjects
         }
         
 
+        public void OnLeaveGameButtonClicked()
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+
+      /*  public override void OnLeftRoom()
+		{
+			Debug.Log("OnLeftRoom");
+
+			*//*SceneManager.LoadScene("index");*//*
+		}
+            */
         void Update()
         {
             // Exit Sample  
 
             if (IsEscapePressed())
             {
-                PhotonNetwork.LeaveRoom();
                 /*Application.Quit();
 				#if UNITY_EDITOR
 				UnityEditor.EditorApplication.isPlaying = false; 
@@ -293,6 +315,86 @@ namespace UnityTemplateProjects
 #endif
         }
 
-    }
+        public void OnPlayerEnteredRoom(Player newPlayer)
+        {
+            Debug.Log("OnPlayerEnteredRoom");
+        }
 
+        public void OnPlayerLeftRoom(Player otherPlayer)
+        {
+            Debug.Log("OnPlayerLeftRoom");
+        }
+
+        public void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+        {
+            Debug.Log("OnRoomPropertiesUpdate");
+        }
+
+        public void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
+        {
+            Debug.Log("OnPlayerPropertiesUpdate");
+        }
+
+        public void OnMasterClientSwitched(Player newMasterClient)
+        {
+            Debug.Log("OnMasterClientSwitched");
+        }
+
+        public void OnFriendListUpdate(List<FriendInfo> friendList)
+        {
+            Debug.Log("OnFriendListUpdate");
+        }
+
+        public void OnCreatedRoom()
+        {
+            Debug.Log("OnCreatedRoom");
+        }
+
+        public void OnCreateRoomFailed(short returnCode, string message)
+        {
+            Debug.Log("OnCreateRoomFailed");
+        }
+
+        public void OnJoinedRoom()
+        {
+            Debug.Log("OnJoinedRoom");
+        }
+
+        public void OnJoinRoomFailed(short returnCode, string message)
+        {
+            Debug.Log("OnJoinRoomFailed");
+        }
+
+        public void OnJoinRandomFailed(short returnCode, string message)
+        {
+            Debug.Log("OnJoinRandomFailed");
+        }
+
+        public void OnJoinedLobby()
+        {
+            Debug.Log("OnJoinedLobby");
+        }
+
+        public void OnLeftLobby()
+        {
+            Debug.Log("OnLeftLobby");
+        }
+
+        public void OnRoomListUpdate(List<RoomInfo> roomList)
+        {
+            Debug.Log("OnRoomListUpdate");
+        }
+
+        public void OnLobbyStatisticsUpdate(List<TypedLobbyInfo> lobbyStatistics)
+        {
+            Debug.Log("OnLobbyStatisticsUpdate");
+        }
+
+        public void OnLeftRoom()
+        {
+            Debug.Log("OnLeftRoom");
+
+            SceneManager.LoadScene("index");
+        }
+    }
 }

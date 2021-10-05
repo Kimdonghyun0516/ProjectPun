@@ -26,6 +26,7 @@ namespace ChiliGames.VROffice
 
         public void ConnectToMaster()
         {
+            Debug.Log("Office ConnectToMaster");
             PhotonNetwork.OfflineMode = false; //true would "fake" an online connection
             PhotonNetwork.NickName = "PlayerName"; //we can use a input to change this 
             PhotonNetwork.AutomaticallySyncScene = true; //To call PhotonNetwork.LoadLevel()
@@ -38,6 +39,7 @@ namespace ChiliGames.VROffice
 
         public override void OnDisconnected(DisconnectCause cause)
         {
+            Debug.Log("Office OnDisconnected");
             base.OnDisconnected(cause);
             triesToConnectToMaster = false;
             triesToConnectToRoom = false;
@@ -46,6 +48,7 @@ namespace ChiliGames.VROffice
 
         public override void OnConnectedToMaster()
         {
+            Debug.Log("Office OnConnectedToMaster");
             base.OnConnectedToMaster();
             triesToConnectToMaster = false;
             Debug.Log("Connected to master!");
@@ -53,6 +56,7 @@ namespace ChiliGames.VROffice
 
         IEnumerator WaitFrameAndConnect()
         {
+            Debug.Log("Office WaitFrameAndConnect");
             triesToConnectToRoom = true;
             yield return new WaitForEndOfFrame();
             Debug.Log("Connecting");
@@ -61,6 +65,7 @@ namespace ChiliGames.VROffice
 
         public void ConnectToRoom()
         {
+            Debug.Log("Office ConnectToRoom");
             if (!PhotonNetwork.IsConnected)
                 return;
 
@@ -75,6 +80,7 @@ namespace ChiliGames.VROffice
 
         public override void OnJoinedRoom()
         {
+            Debug.Log("Office OnJoinedRoom");
             //Go to next scene after joining the room
             base.OnJoinedRoom();
             Debug.Log("Master: " + PhotonNetwork.IsMasterClient + " | Players In Room: " + PhotonNetwork.CurrentRoom.PlayerCount +
@@ -85,6 +91,7 @@ namespace ChiliGames.VROffice
 
         public override void OnJoinRandomFailed(short returnCode, string message)
         {
+            Debug.Log("Office OnJoinRandomFailed");
             base.OnJoinRandomFailed(returnCode, message);
             //no room available
             //create a room (null as a name means "does not matter")
