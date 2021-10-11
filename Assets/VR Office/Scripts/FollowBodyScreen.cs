@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 using UnityEngine.UI;
+using Photon.Voice.Unity;
 
 namespace ChiliGames.VROffice
 {
@@ -14,6 +15,8 @@ namespace ChiliGames.VROffice
 
         public Text nameText;
 
+        public Text micIcon;
+        Recorder recorder;
         public void Setnickname(string nick)
         {
             Debug.Log("name ok : " + nick);
@@ -22,12 +25,18 @@ namespace ChiliGames.VROffice
         private void Awake()
         {
             pv = GetComponent<PhotonView>();
+            recorder = GetComponent<Recorder>();
         }
         private void Start()
         {
 
         }
+        public void Muteplayer(bool muteon)
+        {
+            if (!pv.IsMine) return;
+            recorder.TransmitEnabled = !muteon;
 
+        }
         // Update is called once per frame
         void Update()
         {
@@ -36,6 +45,17 @@ namespace ChiliGames.VROffice
             {
                 body[i].position = PlatformManager.instance.screenRigParts[i].position;
                 body[i].rotation = PlatformManager.instance.screenRigParts[i].rotation;
+            }
+
+            
+            float amp = recorder.LevelMeter.CurrentAvgAmp;
+            if(amp >= 0.001f)
+            {
+                micIcon.text = "말 O";
+            }
+            else
+            {
+                micIcon.text = "말 X";
             }
         }
     }

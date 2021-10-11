@@ -185,6 +185,8 @@ namespace UnityTemplateProjects
 		}
         */
 
+
+
         void Update()
         {
             // Exit Sample  

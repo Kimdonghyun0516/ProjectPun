@@ -15,6 +15,9 @@ namespace ChiliGames.VROffice
     public class PlatformManager : MonoBehaviourPunCallbacks
     {
         public string nameText1;
+        GameObject player1;
+        bool muteon = false;
+        public Text mutebtn;
 
         [SerializeField] GameObject vrRig;
         public GameObject screenRig;
@@ -127,10 +130,31 @@ namespace ChiliGames.VROffice
         void CreateScreenBody()
         {
             Debug.Log("Delivery : " + nameText1);
-            GameObject player1 = PhotonNetwork.Instantiate(screenBody.name, transform.position, transform.rotation, 0, new object[] { nameText1 });
+            player1 = PhotonNetwork.Instantiate(screenBody.name, transform.position, transform.rotation, 0, new object[] { nameText1 });
             player1.SendMessage("Setnickname", nameText1,
                  SendMessageOptions.DontRequireReceiver);
         }
+        public void MuteClicked()
+        {
+            muteon = !muteon;
+            player1.SendMessage("Muteplayer", muteon,
+                 SendMessageOptions.DontRequireReceiver);
+            Debug.Log("mute" + mutebtn);
+            Debug.Log("mute : " + mutebtn.GetComponent<Text>());
+
+            if (muteon == true)
+            {
+                mutebtn.GetComponent<Text>().text = "Mute";
+            }
+            else
+            {
+                mutebtn.GetComponent<Text>().text = "Speaking";
+            }
+
+        }
+
+
+
 
         public void TeleportEffect()
         {
