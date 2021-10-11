@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 namespace ChiliGames.VROffice
 {
@@ -11,9 +12,20 @@ namespace ChiliGames.VROffice
 
         PhotonView pv;
 
+        public Text nameText;
+
+        public void Setnickname(string nick)
+        {
+            Debug.Log("name ok : " + nick);
+            nameText.text = nick;
+        }
         private void Awake()
         {
             pv = GetComponent<PhotonView>();
+        }
+        private void Start()
+        {
+
         }
 
         // Update is called once per frame

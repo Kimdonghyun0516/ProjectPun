@@ -6,12 +6,16 @@ using System.Collections;
 using UnityEngine.Events;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.UI;
+using Photon.Pun.LobbySystemPhoton;
 
 namespace ChiliGames.VROffice
 {
     //This script handles the different modes: VR or Screen (pc, tablet, phone, etc)
     public class PlatformManager : MonoBehaviourPunCallbacks
     {
+        public string nameText1;
+
         [SerializeField] GameObject vrRig;
         public GameObject screenRig;
         [SerializeField] Transform[] startingPositions;
@@ -45,8 +49,6 @@ namespace ChiliGames.VROffice
 
         void Awake()
         {
-            Debug.Log("Awake");
-
             //If not connected go to lobby to connect
             if (!PhotonNetwork.IsConnected)
             {
@@ -73,13 +75,17 @@ namespace ChiliGames.VROffice
 
         private void Start()
         {
-            Debug.Log("Start");
+
+            string playerName = Template.instance.PlayerNameInput.text;
+            nameText1 = playerName;
 
             //if this is the first player to connect, initialize the students list
             if (PhotonNetwork.IsMasterClient && !initialized)
             {
                 InitializePositionsList();
             }
+
+
             //if this is the teacher, activate its rig and create the body
             if (mode == Mode.VR)
             {
@@ -107,26 +113,28 @@ namespace ChiliGames.VROffice
             localVrBody = PhotonNetwork.Instantiate(vrBody.name, transform.position, transform.rotation).GetComponent<VRBody>();
         }
 
-        public void SetMaleAvatar()
-        {
-            photonView.RPC("ChangeTeacherAvatar", RpcTarget.AllBuffered, "male");
-            localVrBody.GetComponent<PhotonView>().RPC("SetAvatarFollow", RpcTarget.AllBuffered);
-        }
+        /*        public void SetMaleAvatar()
+                {
+                    photonView.RPC("ChangeTeacherAvatar", RpcTarget.AllBuffered, "male");
+                    localVrBody.GetComponent<PhotonView>().RPC("SetAvatarFollow", RpcTarget.AllBuffered);
+                }
 
-        public void SetFemaleAvatar()
-        {
-            photonView.RPC("ChangeTeacherAvatar", RpcTarget.AllBuffered, "female");
-            localVrBody.GetComponent<PhotonView>().RPC("SetAvatarFollow", RpcTarget.AllBuffered);
-        }
-
+                public void SetFemaleAvatar()
+                {
+                    photonView.RPC("ChangeTeacherAvatar", RpcTarget.AllBuffered, "female");
+                    localVrBody.GetComponent<PhotonView>().RPC("SetAvatarFollow", RpcTarget.AllBuffered);
+                }*/
         void CreateScreenBody()
         {
-            PhotonNetwork.Instantiate(screenBody.name, transform.position, transform.rotation);
+            Debug.Log("Delivery : " + nameText1);
+            GameObject player1 = PhotonNetwork.Instantiate(screenBody.name, transform.position, transform.rotation, 0, new object[] { nameText1 });
+            player1.SendMessage("Setnickname", nameText1,
+                 SendMessageOptions.DontRequireReceiver);
         }
 
         public void TeleportEffect()
         {
-            if(localVrBody != null)
+            if (localVrBody != null)
             {
                 localVrBody.GetComponent<PhotonView>().RPC("RPC_TeleportEffect", RpcTarget.Others);
             }
@@ -179,7 +187,7 @@ namespace ChiliGames.VROffice
                 vrRig.transform.position = startingPositions[n].position;
                 vrRig.transform.rotation = startingPositions[n].rotation;
             }
-            else if(mode == Mode.Screen)
+            else if (mode == Mode.Screen)
             {
                 screenRig.transform.position = startingPositions[n].position;
                 screenRig.transform.rotation = startingPositions[n].rotation;

@@ -20,7 +20,7 @@ namespace Photon.Pun.LobbySystemPhoton
 		void Start()
 		{
 			nbrPlayersInLobby = PhotonNetwork.CountOfPlayers;
-			Template.instance.PlayerNameInput.text = "Player " + Random.Range(1000, 10000);
+			//Template.instance.PlayerNameInput.text = "Player " + Random.Range(1000, 10000);
 		}
 
 		public void OnLoginButtonClicked()
@@ -33,7 +33,7 @@ namespace Photon.Pun.LobbySystemPhoton
 				PhotonNetwork.LocalPlayer.NickName = playerName;
 
 				PhotonNetwork.OfflineMode = false; //true would "fake" an online connection
-				// PhotonNetwork.NickName = "PlayerName"; //we can use a input to change this 
+												   // PhotonNetwork.NickName = "PlayerName"; //we can use a input to change this 
 				PhotonNetwork.AutomaticallySyncScene = true; //To call PhotonNetwork.LoadLevel()
 				PhotonNetwork.GameVersion = "v1";
 
@@ -76,7 +76,8 @@ namespace Photon.Pun.LobbySystemPhoton
 
 		public void OnCreateRoomButtonClicked()
 		{
-			string roomName = "Table_" + Random.Range(1000, 10000);
+			string roomName = PhotonNetwork.LocalPlayer.NickName;
+			//roomName = (roomName.Equals(string.Empty)) ? "Room " + Random.Range(1000, 10000) : roomName;
 			roomName = (roomName.Equals(string.Empty)) ? "Room " + Random.Range(1000, 10000) : roomName;
 
 			byte maxPlayers;
@@ -115,7 +116,7 @@ namespace Photon.Pun.LobbySystemPhoton
 		public override void OnJoinedRoom()
 		{
 			Debug.Log("OnJoinedRoom");
-			
+
 			SceneManager.LoadScene("Office");
 		}
 	}
