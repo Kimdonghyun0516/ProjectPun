@@ -18,6 +18,11 @@ namespace ChiliGames.VROffice
         GameObject player1;
         bool muteon = false;
         public Text mutebtn;
+        [SerializeField] GameObject whiteboard;
+        bool boardon = false;
+        public Text btnBoard;
+
+        [SerializeField] GameObject simpleCamera;
 
         [SerializeField] GameObject vrRig;
         public GameObject screenRig;
@@ -153,7 +158,28 @@ namespace ChiliGames.VROffice
 
         }
 
+        public void WhiteBoardClicked()
+        {
+            boardon = !boardon;
+            
+            whiteboard.SendMessage("WhiteBoardstart", boardon,
+                 SendMessageOptions.DontRequireReceiver);
+            simpleCamera.SendMessage("WhiteBoardstart", boardon,
+                 SendMessageOptions.DontRequireReceiver);
 
+            Debug.Log("Board" + btnBoard);
+            //Debug.Log("mute : " + btnBoard.GetComponent<Text>());
+
+            if (boardon == true)
+            {
+                btnBoard.GetComponent<Text>().text = "WhiteBoardOn";
+            }
+            else
+            {
+                btnBoard.GetComponent<Text>().text = "WhiteBoardOff";
+            }
+
+        }
 
 
         public void TeleportEffect()

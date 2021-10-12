@@ -212,9 +212,18 @@ namespace UnityTemplateProjects
                 Cursor.lockState = CursorLockMode.None;
             }
 
+            if (IsRightMouseButtonUp())
+            {
+                if (Whiting == true)
+                {
+                    openMenu(); 
+                }
+            }
+
             // Rotation
             if (IsCameraRotationAllowed())
             {
+               
                 var mouseMovement = GetInputLookRotation() * Time.deltaTime * 5;
                 if (invertY)
                     mouseMovement.y = -mouseMovement.y;
@@ -284,8 +293,19 @@ namespace UnityTemplateProjects
             return Input.GetKey(KeyCode.Escape);
 #endif
         }
+        bool Whiting = false;
+        public void WhiteBoardstart(bool on)
+        {
+            Debug.Log("WhiteBoardstart2" + on);
+
+            Whiting = on;
+        }
+
         bool IsCameraRotationAllowed()
         {
+            if (Whiting == true)
+                return false;
+
 #if ENABLE_INPUT_SYSTEM
             bool canRotate = Mouse.current != null ? Mouse.current.rightButton.isPressed : false;
             canRotate |= Gamepad.current != null ? Gamepad.current.rightStick.ReadValue().magnitude > 0 : false;
@@ -301,6 +321,11 @@ namespace UnityTemplateProjects
 #else
             return Input.GetMouseButtonDown(1);
 #endif
+        }
+
+        void openMenu()
+        {
+            Debug.Log("openMenu");
         }
 
         bool IsRightMouseButtonUp()

@@ -165,17 +165,38 @@ namespace ChiliGames.VROffice
         {
             GetComponent<Renderer>().material.mainTexture = receivedTexture;
         }
+
+        
+        public void WhiteBoardstart(bool on)
+        {
+            Debug.Log("WhiteBoardstart"+ on);
+
+            Whiting = on;
+        }
+
+        bool Whiting = false;
+
+
         private void Update()
         {
-            /*if (IsLeftMouseButtonDown())
+            if (Whiting == false)
+                return;
+
+            #if ENABLE_INPUT_SYSTEM
+            if (IsLeftMouseButtonDown())
             {
-                Debug.Log("MouseDown");
-                Debug.Log(string.Format("Mouse position x={0} y={1}",
-                          Mouse.current.position.x.ReadValue(),
-                          Mouse.current.position.y.ReadValue()));
+                //Debug.Log("MouseDown");
+
+                //Debug.Log("Mouse.current" + Mouse.current);
+                //Debug.Log("Mouse.current.position" + Mouse.current.position);
+                //Debug.Log("Mouse.current.position.x" + Mouse.current.position.x);
+
+                /* Debug.Log(string.Format("Mouse position x={0} y={1}",
+                           Mouse.current.position.x.ReadValue(),
+                           Mouse.current.position.y.ReadValue()));*/
                 Color color = Color.blue;
                 Vector2 pos = Camera.main.ScreenToViewportPoint(Mouse.current.position.ReadValue());
-                Debug.Log(string.Format("Main Mouse position x={0} y={1}",pos.x,pos.y));
+                //Debug.Log(string.Format("Main Mouse position x={0} y={1}",pos.x,pos.y));
 
                 //DrawAtPosition(new float[] { pos.x, pos.y }, 50, new float[] { color.r, color.g, color.b });
 
@@ -183,7 +204,8 @@ namespace ChiliGames.VROffice
                     new float[] { 1.0f - pos.x, 1.0f - pos.y },
                     50,
                     new float[] { color.r, color.g, color.b });
-            }*/
+            }
+            #endif
         }
     }
 }
