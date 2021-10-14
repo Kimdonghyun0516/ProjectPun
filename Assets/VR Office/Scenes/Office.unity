@@ -617,7 +617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText1: 
   mutebtn: {fileID: 398671089}
-  whiteboard: {fileID: 4499455642745936678}
+  whiteboard: {fileID: 3554449620100959414}
   btnBoard: {fileID: 1917961037}
   simpleCamera: {fileID: 608228472}
   vrRig: {fileID: 6246618556679375970}
@@ -642,7 +642,7 @@ MonoBehaviour:
   screenRigParts:
   - {fileID: 506889416}
   screenBody: {fileID: 2176608843384903841, guid: 38c35990c8a71d844b4037e4e8104c8e, type: 3}
-  mode: 1
+  mode: 0
   onSpawned:
     m_PersistentCalls:
       m_Calls: []
@@ -4991,7 +4991,7 @@ RectTransform:
   - {fileID: 299708896}
   - {fileID: 868387078}
   - {fileID: 670780920}
-  m_Father: {fileID: 4499455642745936673}
+  m_Father: {fileID: 3554449620100959409}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8171,7 +8171,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2065348233}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -9066,6 +9066,7 @@ Transform:
   - {fileID: 1090634213622557181}
   - {fileID: 2526229448278715232}
   - {fileID: 5560707645063198939}
+  - {fileID: 1317910893}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0.90200007, z: 0}
@@ -9144,7 +9145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9fef3ef8c0e6b4d97a49607e9e45ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  touching: 0
+  touching: 1
   pv: {fileID: 0}
 --- !u!1 &3554449620100959414
 GameObject:
@@ -9169,7 +9170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &3750263072137399736
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9268,10 +9269,9 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 1
-  observableSearch: 0
-  ObservedComponents:
-  - {fileID: 28}
+  OwnershipTransfer: 0
+  observableSearch: 1
+  ObservedComponents: []
   sceneViewId: 3
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -9290,7 +9290,6 @@ Transform:
   - {fileID: 1954578029}
   - {fileID: 3183005098990435568}
   - {fileID: 4758383055991091019}
-  - {fileID: 1317910893}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 178.98601, z: 0}
@@ -9389,12 +9388,12 @@ GameObject:
   - component: {fileID: 28}
   - component: {fileID: 29}
   m_Layer: 8
-  m_Name: WhiteBoard
+  m_Name: WhiteBoard1
   m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4758383055991091019
 Transform:
   m_ObjectHideFlags: 0

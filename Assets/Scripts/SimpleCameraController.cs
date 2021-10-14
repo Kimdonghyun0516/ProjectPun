@@ -175,15 +175,17 @@ namespace UnityTemplateProjects
         public void OnLeaveGameButtonClicked()
         {
             PhotonNetwork.LeaveRoom();
+
+
         }
-        /*
-        public override void OnLeftRoom()
+        
+        /*public override void OnLeftRoom()
 		{
 			Debug.Log("OnLeftRoom");
 
 			SceneManager.LoadScene("index");
-		}
-        */
+		}*/
+        
 
 
 
@@ -260,9 +262,9 @@ namespace UnityTemplateProjects
         float GetBoostFactor()
         {
 #if ENABLE_INPUT_SYSTEM
-            return boostFactorAction.ReadValue<Vector2>().y * 0.01f;
+            return boostFactorAction.ReadValue<Vector2>().y * 0.001f;
 #else
-            return Input.mouseScrollDelta.y * 0.2f;
+            return Input.mouseScrollDelta.y * 0.02f;
 #endif
         }
 

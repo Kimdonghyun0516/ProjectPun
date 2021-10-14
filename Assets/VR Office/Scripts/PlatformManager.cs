@@ -118,7 +118,14 @@ namespace ChiliGames.VROffice
 
         void CreateVRBody()
         {
-            localVrBody = PhotonNetwork.Instantiate(vrBody.name, transform.position, transform.rotation).GetComponent<VRBody>();
+            /*localVrBody = PhotonNetwork.Instantiate
+                (vrBody.name, transform.position, transform.rotation).GetComponent<VRBody>();*/
+            player1 = PhotonNetwork.Instantiate
+                (vrBody.name, transform.position, transform.rotation);
+            localVrBody = player1.GetComponent<VRBody>();
+
+            player1.SendMessage("Setnickname", nameText1,
+                 SendMessageOptions.DontRequireReceiver);
         }
 
         /*        public void SetMaleAvatar()
@@ -135,15 +142,20 @@ namespace ChiliGames.VROffice
         void CreateScreenBody()
         {
             Debug.Log("Delivery : " + nameText1);
-            player1 = PhotonNetwork.Instantiate(screenBody.name, transform.position, transform.rotation, 0, new object[] { nameText1 });
+            player1 = PhotonNetwork.Instantiate
+                (screenBody.name, transform.position, transform.rotation, 0, new object[] 
+                { nameText1 });
             player1.SendMessage("Setnickname", nameText1,
                  SendMessageOptions.DontRequireReceiver);
         }
         public void MuteClicked()
         {
             muteon = !muteon;
+
+
             player1.SendMessage("Muteplayer", muteon,
                  SendMessageOptions.DontRequireReceiver);
+            
             Debug.Log("mute" + mutebtn);
             Debug.Log("mute : " + mutebtn.GetComponent<Text>());
 

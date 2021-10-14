@@ -2,6 +2,7 @@
 using Photon.Pun;
 using System.Collections;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 namespace ChiliGames.VROffice
 {
@@ -35,6 +36,12 @@ namespace ChiliGames.VROffice
             }
         }
 
+        void OnEnable()
+        {
+            PhotonNetwork.AddCallbackTarget(this);       
+            Debug.Log("OnEnableVRbody");
+
+        }
         // Follow trackers only if it's our body
         void Update()
         {
@@ -116,6 +123,14 @@ namespace ChiliGames.VROffice
             bodyRenderer.material.SetColor("_Albedo", playerColor);
             lHand.material.SetColor("_BaseColor", playerColor);
             rHand.material.SetColor("_BaseColor", playerColor);
+        }
+
+
+        public override void OnLeftRoom()
+        {
+            Debug.Log("OnLeftRoomVRbody");
+
+            SceneManager.LoadScene("index");
         }
     }
 }

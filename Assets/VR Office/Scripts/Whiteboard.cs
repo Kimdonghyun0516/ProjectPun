@@ -51,6 +51,8 @@ namespace ChiliGames.VROffice
             texture.Apply();
 
             pv = GetComponent<PhotonView>();
+            Debug.Log("PhotonView = " +pv);
+
 
             deleteColor = Enumerable.Repeat(Color.white, textureSize * textureSize).ToArray();
         }
@@ -122,7 +124,10 @@ namespace ChiliGames.VROffice
         //To clear the whiteboard.
         public void ClearWhiteboard()
         {
+            Debug.Log("ClearWhiteboard = " + pv);
+
             pv.RPC("RPC_ClearWhiteboard", RpcTarget.AllBuffered);
+
         }
 
         bool IsLeftMouseButtonDown()
