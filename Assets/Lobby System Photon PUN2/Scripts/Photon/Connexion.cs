@@ -44,7 +44,7 @@ namespace Photon.Pun.LobbySystemPhoton
 			}
 			else
 			{
-				Debug.LogError("Player Name is invalid.");
+				Debug.LogError("닉네임을 입력하세요");
 			}
 		}
 

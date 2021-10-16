@@ -27,8 +27,8 @@ namespace VRKeyboard.Utils
         #region Private Variables
         private string Input
         {
-            get { return inputText.text; }
-            set { inputText.text = value; }
+            get { return Text.text; }
+            set { Text.text = value; }
         }
         private Key[] keyList;
         private bool capslockFlag;
@@ -44,7 +44,7 @@ namespace VRKeyboard.Utils
         {
             foreach (var key in keyList)
             {
-                key.OnKeyClicked += GenerateInput;
+                key.OnKeyClicked += GenerateInputLogin;
             }
             capslockFlag = isUppercase;
             CapsLock();
@@ -92,7 +92,7 @@ namespace VRKeyboard.Utils
             }
         }
 
-        public void GenerateInput(string s)
+        public void GenerateInputLogin(string s)
         {
             if (Input.Length > maxInputLength) { return; }
             Input += s;
