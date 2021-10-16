@@ -6,6 +6,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.XR;
+//using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace VRKeyboard.Utils
 {
@@ -15,6 +18,7 @@ namespace VRKeyboard.Utils
         public float delayInSeconds = 0.5f;
         public float loadingTime;
         public Image circle;
+        private InputDevice device;
         #endregion
 
         #region Private Variables
@@ -23,10 +27,14 @@ namespace VRKeyboard.Utils
         #endregion
 
         #region MonoBehaviour Callbacks
+        private void Start()
+        {
+            device = this.GetComponent<XRController>().inputDevice;
+        }
+
         void FixedUpdate()
         {
             RaycastHit hit;
-
             Vector3 fwd = transform.TransformDirection(Vector3.forward);
 
             if (Physics.Raycast(transform.position, fwd, out hit))
