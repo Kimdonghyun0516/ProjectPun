@@ -27,6 +27,10 @@ namespace ChiliGames.VROffice
             pv = GetComponent<PhotonView>();
             recorder = GetComponent<Recorder>();
         }
+        private void Start()
+        {
+
+        }
         public void Muteplayer(bool muteon)
         {
             if (!pv.IsMine) return;

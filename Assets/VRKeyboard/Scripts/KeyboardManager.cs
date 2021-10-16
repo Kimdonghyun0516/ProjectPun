@@ -18,7 +18,7 @@ namespace VRKeyboard.Utils
         public int maxInputLength;
 
         [Header("UI Elements")]
-        public InputField inputText;
+        public Text inputText;
 
         [Header("Essentials")]
         public Transform keys;
