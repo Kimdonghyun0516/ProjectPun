@@ -3,6 +3,8 @@ using Photon.Pun;
 using System.Collections;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Photon.Voice.Unity;
 
 namespace ChiliGames.VROffice
 {
@@ -19,9 +21,27 @@ namespace ChiliGames.VROffice
 
         PhotonView pv;
 
+        public InputField nameText;
+
+        public Text micIcon;
+        Recorder recorder;
+
+        public void Setnickname(string nick)
+        {
+            Debug.Log("name ok : " + nick);
+            nameText.text = nick;
+        }
+        public void Muteplayer(bool muteon)
+        {
+            if (!pv.IsMine) return;
+            recorder.TransmitEnabled = !muteon;
+
+        }
+
         private void Awake()
         {
             pv = GetComponent<PhotonView>();
+            recorder = GetComponent<Recorder>();
 
             //Enable hand renderers if this is my avatar.
             if (pv.IsMine)
@@ -35,6 +55,7 @@ namespace ChiliGames.VROffice
                 PlatformManager.instance.onSpawned.AddListener(SetColor);
             }
         }
+
 
         void OnEnable()
         {
@@ -52,6 +73,16 @@ namespace ChiliGames.VROffice
                     body[i].position = PlatformManager.instance.vrRigParts[i].position;
                     body[i].rotation = PlatformManager.instance.vrRigParts[i].rotation;
                 }
+            }
+
+            float amp = recorder.LevelMeter.CurrentAvgAmp;
+            if (amp >= 0.001f)
+            {
+                micIcon.text = "말 O";
+            }
+            else
+            {
+                micIcon.text = "말 X";
             }
         }
 
