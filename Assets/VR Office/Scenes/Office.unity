@@ -8163,7 +8163,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 1
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 28}
   sceneViewId: 3
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -8285,7 +8286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4758383055991091019
 Transform:
   m_ObjectHideFlags: 0
