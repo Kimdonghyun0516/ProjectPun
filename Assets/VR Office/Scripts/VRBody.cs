@@ -21,7 +21,7 @@ namespace ChiliGames.VROffice
 
         PhotonView pv;
 
-        public InputField nameText;
+        public Text nameText;
 
         public Text micIcon;
         Recorder recorder;
