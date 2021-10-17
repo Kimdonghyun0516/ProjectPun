@@ -13,6 +13,7 @@ namespace Photon.Pun.LobbySystemPhoton
 
 		[Header("Login Panel")]
 		public GameObject LoginPanel;
+		public GameObject Keyboard;
 
 		[Header("ListRoom Panel")]
 		public GameObject ListRoomPanel;

@@ -21,7 +21,6 @@ namespace Photon.Pun.LobbySystemPhoton
 		void Start()
 		{
 			nbrPlayersInLobby = PhotonNetwork.CountOfPlayers;
-			//Template.instance.PlayerNameInput.text = "Player " + Random.Range(1000, 10000);
 		}
 
 		public void OnLoginButtonClicked()
@@ -41,6 +40,7 @@ namespace Photon.Pun.LobbySystemPhoton
 				PhotonNetwork.ConnectUsingSettings();
 
 				Template.instance.InputPanel.SetActive(false);
+				Template.instance.Keyboard.SetActive(false);
 				Template.instance.LoadingPanel.SetActive(true);
 			}
 			else
