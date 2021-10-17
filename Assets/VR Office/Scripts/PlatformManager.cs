@@ -152,7 +152,6 @@ namespace ChiliGames.VROffice
         {
             muteon = !muteon;
 
-
             localVrBody.SendMessage("Muteplayer", muteon,
                  SendMessageOptions.DontRequireReceiver);
 

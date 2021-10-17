@@ -2,7 +2,8 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR;
 
 namespace Photon.Pun.LobbySystemPhoton
 {

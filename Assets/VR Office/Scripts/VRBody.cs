@@ -28,7 +28,6 @@ namespace ChiliGames.VROffice
 
         public void Setnickname(string nick)
         {
-            Debug.Log("name ok : " + nick);
             nameText.text = nick;
         }
         public void Muteplayer(bool muteon)
@@ -61,7 +60,6 @@ namespace ChiliGames.VROffice
         {
             PhotonNetwork.AddCallbackTarget(this);       
             Debug.Log("OnEnableVRbody");
-
         }
         // Follow trackers only if it's our body
         void Update()
