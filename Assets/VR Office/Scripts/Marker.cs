@@ -42,6 +42,7 @@ namespace ChiliGames.VROffice
             if (!pv.IsMine) return;
             if (!grabbed) return;
 
+            //Debug.Log("Drawing start");
             //Cast a raycast to detect whiteboard.
             if (Physics.Raycast(drawingPoint.position, drawingPoint.up, out touch, drawingDistance))
             {
@@ -56,6 +57,8 @@ namespace ChiliGames.VROffice
                     }
                     if (whiteboard == null) return;
                     //Send the rpc with the coordinates, pen size and color of marker in RGB.
+
+                    //Debug.Log("Draw???");
                     whiteboard.pv.RPC("DrawAtPosition", RpcTarget.AllBuffered, 
                         new float[] { touch.textureCoord.x, touch.textureCoord.y }, 
                         penSize, 

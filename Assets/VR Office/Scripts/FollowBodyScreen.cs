@@ -31,7 +31,6 @@ namespace ChiliGames.VROffice
         {
             if (!pv.IsMine) return;
             recorder.TransmitEnabled = !muteon;
-
         }
         // Update is called once per frame
         void Update()
@@ -43,7 +42,6 @@ namespace ChiliGames.VROffice
                 body[i].rotation = PlatformManager.instance.screenRigParts[i].rotation;
             }
 
-            
             float amp = recorder.LevelMeter.CurrentAvgAmp;
             if(amp >= 0.001f)
             {

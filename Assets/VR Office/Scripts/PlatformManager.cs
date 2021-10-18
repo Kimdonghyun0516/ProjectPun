@@ -118,10 +118,7 @@ namespace ChiliGames.VROffice
 
         void CreateVRBody()
         {
-            localVrBody = PhotonNetwork.Instantiate
-                (vrBody.name, transform.position, transform.rotation).GetComponent<VRBody>();
-            player1 = PhotonNetwork.Instantiate
-                                    (vrBody.name, transform.position, transform.rotation);
+            player1 = PhotonNetwork.Instantiate(vrBody.name, transform.position, transform.rotation);
             localVrBody = player1.GetComponent<VRBody>();
 
             localVrBody.SendMessage("Setnickname", nameText1,

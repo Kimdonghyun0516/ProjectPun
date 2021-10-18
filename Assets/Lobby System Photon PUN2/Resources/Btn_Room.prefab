@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 3629616547824660268}
   m_Layer: 5
   m_Name: Btn_Room
-  m_TagString: Untagged
+  m_TagString: VRGazeInteractable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -612,7 +612,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 170, y: 80, z: 30}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1323655368022164
 GameObject:

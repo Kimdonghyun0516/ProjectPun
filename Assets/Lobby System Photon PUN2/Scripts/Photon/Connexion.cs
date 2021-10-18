@@ -64,7 +64,6 @@ namespace Photon.Pun.LobbySystemPhoton
 		{
 			Template.instance.BtnCreatRoom.interactable = true;
 			Debug.Log("OnJoinedLobby");
-
 		}
 
 		public void OnRefreshButtonClicked()
@@ -119,6 +118,18 @@ namespace Photon.Pun.LobbySystemPhoton
 			Debug.Log("OnJoinedRoom");
 
 			SceneManager.LoadScene("Office");
+		}
+
+		public void BtnShowOffLobby()
+		{
+			PhotonNetwork.LeaveLobby();
+		}
+
+		public void OnExit()
+		{
+			Debug.Log("OnExit");
+
+			SceneManager.LoadScene("end");
 		}
 	}
 }

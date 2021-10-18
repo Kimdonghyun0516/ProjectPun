@@ -83,6 +83,9 @@ namespace ChiliGames.VROffice
 
             if (touchingLastFrame)
             {
+                string str1 = string.Format("setFixel {0}, {1}, {2}, {3}", x, y, penSize, color[0]);
+                Debug.Log(str1);
+
                 texture.SetPixels(x, y, penSize, penSize, color);
 
                 //Lerp last pixel to new pixel, so we draw a continuous line.
@@ -100,6 +103,7 @@ namespace ChiliGames.VROffice
                 else if (everyOthrFrame)
                 {
                     texture.Apply();
+                    Debug.Log("TextureApply");
                     everyOthrFrame = false;
                 }
             }
@@ -205,10 +209,10 @@ namespace ChiliGames.VROffice
 
                 //DrawAtPosition(new float[] { pos.x, pos.y }, 50, new float[] { color.r, color.g, color.b });
 
-                this.pv.RPC("DrawAtPosition", RpcTarget.AllBuffered,
+                /*this.pv.RPC("DrawAtPosition", RpcTarget.AllBuffered,
                     new float[] { 1.0f - pos.x, 1.0f - pos.y },
                     50,
-                    new float[] { color.r, color.g, color.b });
+                    new float[] { color.r, color.g, color.b });*/
             }
             #endif
         }

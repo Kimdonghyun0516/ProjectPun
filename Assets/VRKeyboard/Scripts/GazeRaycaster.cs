@@ -17,7 +17,7 @@ namespace VRKeyboard.Utils
 
         public XRNode inputs;
 
-        private float wait = 0.9f;
+        //private float wait = 0.9f;
         #region MonoBehaviour Callbacks
         void FixedUpdate()
         {
@@ -31,7 +31,7 @@ namespace VRKeyboard.Utils
 
             if (Physics.Raycast(transform.position, fwd, out hit))
             {
-                if (is_trigger && Time.time > wait)
+                if (is_trigger)//&& Time.time > wait)
                 {
                     //Debug.Log("Trigger button is pressed");
                     // 키 또는 작동 버튼을 누른 경우에만 이벤트를 트리거합니다.
@@ -101,9 +101,9 @@ namespace VRKeyboard.Utils
             if (target.GetComponent<Button>())
             {
                 target.GetComponent<Button>().onClick.Invoke();
+                yield return new WaitForSeconds(1.8f);
                 //Debug.Log("ffff"); 
             }
-
             ResetGazer();
         }
 

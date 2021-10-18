@@ -29,6 +29,7 @@ namespace ChiliGames.VROffice
         public void Setnickname(string nick)
         {
             nameText.text = nick;
+            Debug.Log("Setnickname" + nick);
         }
         public void Muteplayer(bool muteon)
         {
