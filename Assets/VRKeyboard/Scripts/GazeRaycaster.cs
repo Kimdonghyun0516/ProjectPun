@@ -17,7 +17,7 @@ namespace VRKeyboard.Utils
 
         public XRNode inputs;
 
-        private float wait = 0.3f;
+        private float wait = 0.9f;
         #region MonoBehaviour Callbacks
         void FixedUpdate()
         {
