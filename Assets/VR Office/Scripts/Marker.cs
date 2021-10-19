@@ -71,6 +71,23 @@ namespace ChiliGames.VROffice
                 whiteboard.pv.RPC("ResetTouch", RpcTarget.AllBuffered);
                 whiteboard = null;
             }
+
+            if (Physics.Raycast(drawingPoint.position, drawingPoint.up, out touch, drawingDistance))
+            {
+                //The whiteboard has the tag "Finish".
+                if (touch.collider.CompareTag("Menu"))
+                {
+                    if (!touching)
+                    {
+                        touching = true;
+                        lastAngle = transform.rotation;
+                        whiteboard = touch.collider.GetComponent<Whiteboard>();
+                    }
+                    if (whiteboard == null) return;
+                    
+                }
+            }
+
         }
 
         private void LateUpdate()

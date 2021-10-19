@@ -77,11 +77,11 @@ namespace ChiliGames.VROffice
             float amp = recorder.LevelMeter.CurrentAvgAmp;
             if (amp >= 0.001f)
             {
-                micIcon.text = "말 O";
+                micIcon.text = "말 X";
             }
             else
             {
-                micIcon.text = "말 X";
+                micIcon.text = "말 O";
             }
         }
 
@@ -103,7 +103,7 @@ namespace ChiliGames.VROffice
             }
         }
 
-        //For setting different colors to each player joining the room.
+        //룸에 참여하는 각 플레이어의 색을 다르게 설정
         void SetColor()
         {
             Debug.Log("Setting color " + PlatformManager.instance.spawnPosIndex);
@@ -149,7 +149,7 @@ namespace ChiliGames.VROffice
             }
             playerColor = Color.Lerp(Color.white, playerColor, 0.5f);
 
-            //Set body and hands color.
+            //몸과 손의 색을 설정
             bodyRenderer.material.SetColor("_Albedo", playerColor);
             lHand.material.SetColor("_BaseColor", playerColor);
             rHand.material.SetColor("_BaseColor", playerColor);

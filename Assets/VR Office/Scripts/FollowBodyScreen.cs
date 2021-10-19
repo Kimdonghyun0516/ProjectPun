@@ -45,11 +45,11 @@ namespace ChiliGames.VROffice
             float amp = recorder.LevelMeter.CurrentAvgAmp;
             if(amp >= 0.001f)
             {
-                micIcon.text = "말 O";
+                micIcon.text = "말 X";
             }
             else
             {
-                micIcon.text = "말 X";
+                micIcon.text = "말 O";
             }
         }
     }

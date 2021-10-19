@@ -32,9 +32,8 @@ namespace Photon.Pun.LobbySystemPhoton
 			{
 				PhotonNetwork.LocalPlayer.NickName = playerName;
 
-				PhotonNetwork.OfflineMode = false; //true would "fake" an online connection
-												   // PhotonNetwork.NickName = "PlayerName"; //we can use a input to change this 
-				PhotonNetwork.AutomaticallySyncScene = true; //To call PhotonNetwork.LoadLevel()
+				PhotonNetwork.OfflineMode = false; 
+				PhotonNetwork.AutomaticallySyncScene = true; 
 				PhotonNetwork.GameVersion = "v1";
 
 				PhotonNetwork.ConnectUsingSettings();
@@ -45,7 +44,7 @@ namespace Photon.Pun.LobbySystemPhoton
 			}
 			else
 			{
-				Debug.LogError("Player Name is invalid.");
+				Debug.LogError("닉네임을 입력하세요.");
 			}
 		}
 
@@ -77,8 +76,6 @@ namespace Photon.Pun.LobbySystemPhoton
 		public void OnCreateRoomButtonClicked()
 		{
 			string roomName = PhotonNetwork.LocalPlayer.NickName;
-			//roomName = (roomName.Equals(string.Empty)) ? "Room " + Random.Range(1000, 10000) : roomName;
-			roomName = (roomName.Equals(string.Empty)) ? "Room " + Random.Range(1000, 10000) : roomName;
 
 			byte maxPlayers;
 			byte.TryParse(Maxplayer.ToString(), out maxPlayers);
@@ -88,17 +85,12 @@ namespace Photon.Pun.LobbySystemPhoton
 			PhotonNetwork.CreateRoom(roomName, options, null);
 			Template.instance.NbrPlayers.text = "00";
 			Template.instance.BtnCreatRoom.interactable = false;
-			/*if (!PhotonNetwork.IsConnected)
-				return;
-
-			RoomOptions options = new RoomOptions();
-			options.MaxPlayers = 10;
-			PhotonNetwork.JoinOrCreateRoom("VROffice", options, null);*/
 		}
 
 		public void OnLeaveGameButtonClicked()
 		{
-			PhotonNetwork.LeaveRoom();
+			Application.Quit();
+			UnityEditor.EditorApplication.isPlaying = false;
 		}
 
 		public void theJoinRoom(string roomName)

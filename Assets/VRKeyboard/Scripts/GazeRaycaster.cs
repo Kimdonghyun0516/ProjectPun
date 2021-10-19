@@ -33,7 +33,6 @@ namespace VRKeyboard.Utils
             {
                 if (is_trigger)//&& Time.time > wait)
                 {
-                    //Debug.Log("Trigger button is pressed");
                     // 키 또는 작동 버튼을 누른 경우에만 이벤트를 트리거합니다.
                     if (hit.transform.tag == "VRGazeInteractable")
                     {
