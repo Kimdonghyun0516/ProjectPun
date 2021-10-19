@@ -26,8 +26,16 @@ namespace ChiliGames.VROffice
         public Text micIcon;
         Recorder recorder;
 
+        string nickText;
+
+        [PunRPC]
+        public void RPC_NickName(string nick)
+        {
+            nickText = nick;
+        }
         public void Setnickname(string nick)
         {
+            pv.RPC("RPC_NickName", RpcTarget.AllBuffered, nick);
             nameText.text = nick;
             Debug.Log("Setnickname" + nick);
         }
@@ -73,15 +81,32 @@ namespace ChiliGames.VROffice
                     body[i].rotation = PlatformManager.instance.vrRigParts[i].rotation;
                 }
             }
+        }
+
+        private void FixedUpdate()
+        {
+            micIcon.text = micText;
+            nameText.text = nickText;
 
             float amp = recorder.LevelMeter.CurrentAvgAmp;
-            if (amp >= 0.001f)
+            pv.RPC("RPC_Speaking", RpcTarget.AllBuffered, amp >= 0.001f);
+
+
+        }
+
+        string micText;
+
+        [PunRPC]
+        public void RPC_Speaking(bool isSpeaking)
+        {
+            if (isSpeaking)
             {
-                micIcon.text = "말 X";
+                //Debug.Log("isSpeaking = " + pv.ViewID + " " + isSpeaking);
+                micText = "말 O";
             }
             else
             {
-                micIcon.text = "말 O";
+                micText = "말 X";
             }
         }
 
