@@ -99,6 +99,7 @@ namespace ChiliGames.VROffice
         [PunRPC]
         public void RPC_Speaking(bool isSpeaking)
         {
+            micText = "말 X";
             if (isSpeaking)
             {
                 //Debug.Log("isSpeaking = " + pv.ViewID + " " + isSpeaking);
