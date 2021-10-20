@@ -176,10 +176,11 @@ namespace UnityTemplateProjects
         {
             PhotonNetwork.LeaveRoom();
 
+            Debug.Log("방 나가기");
 
         }
         
-        /*public override void OnLeftRoom()
+/*        public override void OnLeftRoom()
 		{
 			Debug.Log("OnLeftRoom");
 

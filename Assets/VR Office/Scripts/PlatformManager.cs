@@ -9,6 +9,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.UI;
 using Photon.Pun.LobbySystemPhoton;
 
+
 namespace ChiliGames.VROffice
 {
     //This script handles the different modes: VR or Screen (pc, tablet, phone, etc)
