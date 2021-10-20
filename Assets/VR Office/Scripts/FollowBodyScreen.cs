@@ -35,8 +35,7 @@ namespace ChiliGames.VROffice
         // Update is called once per frame
         void Update()
         {
-
-            if (!pv.IsMine) return;
+            /*if (!pv.IsMine) return;
             for (int i = 0; i < body.Length; i++)
             {
                 body[i].position = PlatformManager.instance.screenRigParts[i].position;
@@ -52,7 +51,7 @@ namespace ChiliGames.VROffice
             {
                 micIcon.text = "말 O";
             }
-            Debug.Log("음소거");
+            Debug.Log("음소거");*/
         }
     }
 }

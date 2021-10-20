@@ -101,7 +101,6 @@ namespace VRKeyboard.Utils
             {
                 target.GetComponent<Button>().onClick.Invoke();
                 yield return new WaitForSeconds(1.8f);
-                //Debug.Log("ffff"); 
             }
             ResetGazer();
         }

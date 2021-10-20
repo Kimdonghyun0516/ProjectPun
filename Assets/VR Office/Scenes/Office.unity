@@ -2910,7 +2910,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -195.3, y: 40}
+  m_AnchoredPosition: {x: -245.2, y: 38.100014}
   m_SizeDelta: {x: 120, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &868387079
@@ -3047,7 +3047,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  cooldown: 0
+  cooldown: 2
 --- !u!1 &936621623
 GameObject:
   m_ObjectHideFlags: 0
@@ -4631,7 +4631,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.019, y: 0.049}
+  m_AnchoredPosition: {x: 0.0387, y: 0.049}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1317910894
@@ -5758,7 +5758,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 70, y: 43}
+  m_AnchoredPosition: {x: 126.4, y: 38.100002}
   m_SizeDelta: {x: 120, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1592564356
@@ -8726,6 +8726,7 @@ GameObject:
   - component: {fileID: 6246618556307038359}
   - component: {fileID: 6246618556307038345}
   - component: {fileID: 6246618556307038358}
+  - component: {fileID: 6246618556307038360}
   m_Layer: 0
   m_Name: LeftHand Controller
   m_TagString: Untagged
@@ -8801,6 +8802,20 @@ MonoBehaviour:
   m_PlayHapticsOnHoverExited: 0
   m_HapticHoverExitIntensity: 0
   m_HapticHoverExitDuration: 0
+--- !u!114 &6246618556307038360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6246618556307038357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c53fc58a9988544ae1b6bb323ce3f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deviceRole: 2
+  Primary: {fileID: 1317910892}
 --- !u!1 &6246618556375705466
 GameObject:
   m_ObjectHideFlags: 0
