@@ -152,7 +152,7 @@ namespace ChiliGames.VROffice
 
         //This code below is for sending the whiteboard state to new players joining the room. This is causing lag so it is a WIP. You can still actiavate it but it will lag for 1 second the master client when somebody joins.
         
-        public override void OnPlayerEnteredRoom(Player newPlayer)
+ /*       public override void OnPlayerEnteredRoom(Player newPlayer)
         {
             base.OnPlayerEnteredRoom(newPlayer);
             if (PhotonNetwork.IsMasterClient)
@@ -173,7 +173,7 @@ namespace ChiliGames.VROffice
         void ApplyReceivedTexture()
         {
             GetComponent<Renderer>().material.mainTexture = receivedTexture;
-        }
+        }*/
 
         
         public void WhiteBoardstart(bool on)
