@@ -177,9 +177,9 @@ namespace UnityTemplateProjects
 
         public void OnLeaveGameButtonClicked()
         {
-            PhotonNetwork.LeaveRoom();
+/*            PhotonNetwork.LeaveRoom();
 
-            Debug.Log("방 나가기");
+            Debug.Log("방 나가기");*/
 
         }
         
