@@ -312,6 +312,8 @@ namespace ChiliGames.VROffice
         public override void OnDisconnected(DisconnectCause cause)
         {
             base.OnDisconnected(cause);
+            Debug.Log("OnDisconnected121212");
+            Connexion.Fromoffice = true;
             GoToScene(0);
         }
 

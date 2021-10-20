@@ -13,6 +13,22 @@ namespace Photon.Pun.LobbySystemPhoton
 		public int Maxplayer = 8;
 		private int nbrPlayersInLobby = 0;
 
+		public static bool Fromoffice = false;
+		public static string nicknamecache;
+
+		public override void OnEnable()
+		{
+			PhotonNetwork.AddCallbackTarget(this);
+
+			Debug.Log("Connectoin OnEnable True");
+		}
+
+		public override void OnDisable()
+		{
+			PhotonNetwork.RemoveCallbackTarget(this);
+			Debug.Log("Connectoin OnDisable True");
+		}
+
 		void Awake()
 		{
 			instance = this;
@@ -21,6 +37,20 @@ namespace Photon.Pun.LobbySystemPhoton
 		void Start()
 		{
 			nbrPlayersInLobby = PhotonNetwork.CountOfPlayers;
+
+			Debug.Log("isConnected : " + PhotonNetwork.IsConnected + "Server : " + PhotonNetwork.Server);
+			if(Fromoffice)
+            {
+				Template.instance.PlayerNameInput.text = nicknamecache;
+
+				this.OnLoginButtonClicked();
+				Debug.Log("Disconnect call");
+			}
+		}
+		public void OnDisconnected()
+        {
+			Debug.Log("Disconnected");
+			Debug.Log("Disconnected222");
 		}
 
 		public void OnLoginButtonClicked()
@@ -31,7 +61,7 @@ namespace Photon.Pun.LobbySystemPhoton
 			if (!playerName.Equals(""))
 			{
 				PhotonNetwork.LocalPlayer.NickName = playerName;
-
+				nicknamecache = playerName;
 				PhotonNetwork.OfflineMode = false; 
 				PhotonNetwork.AutomaticallySyncScene = true; 
 				PhotonNetwork.GameVersion = "v1";
@@ -52,6 +82,7 @@ namespace Photon.Pun.LobbySystemPhoton
 		{
 			Template.instance.LoginPanel.SetActive(false);
 			Template.instance.LoadingPanel.SetActive(false);
+			Template.instance.Keyboard.SetActive(false);
 			Template.instance.ListRoomPanel.SetActive(true);
 			PhotonNetwork.JoinLobby();
 			Debug.Log("OnConnectedToMaster");

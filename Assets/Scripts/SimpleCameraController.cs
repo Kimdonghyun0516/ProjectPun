@@ -8,10 +8,11 @@ using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun.LobbySystemPhoton;
 
 namespace UnityTemplateProjects
 {
-    public class SimpleCameraController : MonoBehaviour, IInRoomCallbacks, IMatchmakingCallbacks, ILobbyCallbacks
+    public class SimpleCameraController : MonoBehaviour, IInRoomCallbacks, IMatchmakingCallbacks, ILobbyCallbacks, IConnectionCallbacks
     {
         class CameraState
         {
@@ -123,6 +124,7 @@ namespace UnityTemplateProjects
         public void OnDisable()
         {
             PhotonNetwork.RemoveCallbackTarget(this);
+            Debug.Log("OnDisable2222");
         }
 
         void OnEnable()
@@ -134,6 +136,7 @@ namespace UnityTemplateProjects
             Debug.Log("OnEnable");
             Debug.Log("OnEnable2");
         }
+
 
         Vector3 GetInputTranslationDirection()
         {
@@ -397,7 +400,8 @@ namespace UnityTemplateProjects
 
         public void OnJoinedLobby()
         {
-            Debug.Log("OnJoinedLobby");
+            Debug.Log("OnJoinedLobby2222222");
+
         }
 
         public void OnLeftLobby()
@@ -419,7 +423,39 @@ namespace UnityTemplateProjects
         {
             Debug.Log("OnLeftRoom!!!!!!!!!!!");
 
-            SceneManager.LoadScene("index");
+            PhotonNetwork.Disconnect();
+
+            //SceneManager.LoadScene("index");
+/*
+            Template.instance.LoginPanel.SetActive(false);
+            Template.instance.LoadingPanel.SetActive(false);
+            Template.instance.ListRoomPanel.SetActive(true);*/
+        }
+
+        public void OnConnected()
+        {
+        }
+
+        public void OnConnectedToMaster()
+        {
+        }
+
+        public void OnDisconnected(DisconnectCause cause)
+        {
+            //플랫폼 매니저가 호출 된다
+           // Debug.Log("OnDisconnected22222");
+        }
+
+        public void OnRegionListReceived(RegionHandler regionHandler)
+        {
+        }
+
+        public void OnCustomAuthenticationResponse(Dictionary<string, object> data)
+        {
+        }
+
+        public void OnCustomAuthenticationFailed(string debugMessage)
+        {
         }
     }
 }

@@ -69,18 +69,18 @@ namespace Photon.Pun.LobbySystemPhoton
 
 		public override void OnLeftRoom()
 		{
-			Template.instance.RoomPanel.SetActive(false);
-			Template.instance.ListRoomPanel.SetActive(true);
+/*			Template.instance.RoomPanel.SetActive(false);
+			Template.instance.ListRoomPanel.SetActive(true);*/
 
-			foreach (GameObject entry in playerListEntries.Values)
+/*			foreach (GameObject entry in playerListEntries.Values)
 			{
 				Destroy(entry.gameObject);
-			}
+			}*/
 
-			playerListEntries.Clear();
+/*			playerListEntries.Clear();
 			playerListEntries = null;
 			Template.instance.ChatText.text = "";
-			PhotonNetwork.JoinLobby();
+			PhotonNetwork.JoinLobby();*/
 		}
 	}
 }
