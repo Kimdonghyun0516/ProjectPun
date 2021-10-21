@@ -5,6 +5,7 @@ using Photon.Realtime;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Voice.Unity;
+using System;
 
 namespace ChiliGames.VROffice
 {
@@ -58,7 +59,7 @@ namespace ChiliGames.VROffice
                 rHand.enabled = true;
             }
 
-            if(PlatformManager.instance != null)
+            if (PlatformManager.instance != null)
             {
                 PlatformManager.instance.onSpawned.AddListener(SetColor);
             }
@@ -67,7 +68,7 @@ namespace ChiliGames.VROffice
 
         void OnEnable()
         {
-            PhotonNetwork.AddCallbackTarget(this);       
+            PhotonNetwork.AddCallbackTarget(this);
             Debug.Log("OnEnableVRbody");
         }
         // Follow trackers only if it's our body
@@ -82,14 +83,22 @@ namespace ChiliGames.VROffice
                 }
             }
         }
-
+        long speakingtime = 0;
         private void FixedUpdate()
         {
             micIcon.text = micText;
             nameText.text = nickText;
 
             float amp = recorder.LevelMeter.CurrentAvgAmp;
-            pv.RPC("RPC_Speaking", RpcTarget.AllBuffered, amp >= 0.001f);
+
+            bool s = amp >= 0.001f && recorder.TransmitEnabled;
+            if (s)
+            {
+                speakingtime = DateTime.Now.Ticks + 1000000 * 10;
+            }
+            bool mutespeakingtime = DateTime.Now.Ticks < speakingtime;
+            pv.RPC("RPC_Speaking", RpcTarget.AllBuffered, mutespeakingtime);
+            //pv.RPC("RPC_Speaking", RpcTarget.AllBuffered, amp >= 0.001f && recorder.TransmitEnabled);
 
 
         }
@@ -97,10 +106,12 @@ namespace ChiliGames.VROffice
         string micText;
 
         [PunRPC]
-        public void RPC_Speaking(bool isSpeaking)
+        public void RPC_Speaking(bool time)
         {
+
+
             micText = "말 X";
-            if (isSpeaking)
+            if (time)
             {
                 //Debug.Log("isSpeaking = " + pv.ViewID + " " + isSpeaking);
                 micText = "말 O";
