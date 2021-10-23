@@ -83,19 +83,17 @@ namespace ChiliGames.VROffice
 
             if (touchingLastFrame)
             {
-                string str1 = string.Format("setFixel {0}, {1}, {2}, {3}", x, y, penSize, color[0]);
-                Debug.Log(str1);
+                /*string str1 = string.Format("setFixel {0}, {1}, {2}, {3}", x, y, penSize, color[0]);
+                Debug.Log(str1);*/
 
                 texture.SetPixels(x, y, penSize, penSize, color);
 
-                //Lerp last pixel to new pixel, so we draw a continuous line.
                 for (float t = 0.01f; t < 1.00f; t += 0.1f)
                 {
                     int lerpX = (int)Mathf.Lerp(lastX, (float)x, t);
                     int lerpY = (int)Mathf.Lerp(lastY, (float)y, t);
                     texture.SetPixels(lerpX, lerpY, penSize, penSize, color);
                 }
-                //We apply the texture every other frame, so we improve performance.
                 if (!everyOthrFrame)
                 {
                     everyOthrFrame = true;
@@ -103,7 +101,6 @@ namespace ChiliGames.VROffice
                 else if (everyOthrFrame)
                 {
                     texture.Apply();
-                    Debug.Log("TextureApply");
                     everyOthrFrame = false;
                 }
             }
@@ -149,31 +146,6 @@ namespace ChiliGames.VROffice
             texture.SetPixels(deleteColor);
             texture.Apply();
         }
-
-        //This code below is for sending the whiteboard state to new players joining the room. This is causing lag so it is a WIP. You can still actiavate it but it will lag for 1 second the master client when somebody joins.
-        
- /*       public override void OnPlayerEnteredRoom(Player newPlayer)
-        {
-            base.OnPlayerEnteredRoom(newPlayer);
-            if (PhotonNetwork.IsMasterClient)
-            {
-                pv.RPC("RPC_SendWhiteboard", newPlayer, texture.EncodeToPNG());
-            }
-        }
-
-        [PunRPC]
-        private void RPC_SendWhiteboard(byte[] receivedByte)
-        {
-            receivedTexture = new Texture2D(1, 1);
-            receivedTexture.LoadImage(receivedByte);
-            ApplyReceivedTexture();
-        }
-
-
-        void ApplyReceivedTexture()
-        {
-            GetComponent<Renderer>().material.mainTexture = receivedTexture;
-        }*/
 
         
         public void WhiteBoardstart(bool on)
