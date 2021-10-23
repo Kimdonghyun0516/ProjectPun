@@ -103,7 +103,7 @@ MonoBehaviour:
   voiceDetectionThreshold: 0.01
   voiceDetectionDelayMs: 500
   unityMicrophoneDevice: 
-  photonMicrophoneDeviceId: -1
+  photonMicrophoneDeviceId: 0
   interestGroup: 0
   debugEchoMode: 0
   reliableMode: 0
@@ -492,14 +492,14 @@ RectTransform:
   m_GameObject: {fileID: 4510159349648403144}
   m_LocalRotation: {x: 0, y: 0, z: -0.11025478, w: 0.99390334}
   m_LocalPosition: {x: 0, y: 0, z: -4.4}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4979055383161588212}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -12.66}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7, y: -16.8}
+  m_AnchoredPosition: {x: -59.9, y: 58}
   m_SizeDelta: {x: 91.36, y: 85.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4604312697650398814
@@ -532,7 +532,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 2b31845fcae23ab49bc792f86afffbdc, type: 3}
-    m_FontSize: 15
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
