@@ -97,11 +97,11 @@ namespace ChiliGames.VROffice
         {
             if (time)
             {
-                micText = "말 O";
+                micText = "";
             }
             else
             {
-                micText = "말 X";
+                micText = "/";
             }
         }
 
