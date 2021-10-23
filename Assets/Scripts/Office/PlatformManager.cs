@@ -138,11 +138,11 @@ namespace ChiliGames.VROffice
 
             if (muteon == true)
             {
-                mutebtn.GetComponent<Text>().text = "Mute";
+                mutebtn.GetComponent<Text>().text = "/"; // mute
             }
             else
             {
-                mutebtn.GetComponent<Text>().text = "Speaking";
+                mutebtn.GetComponent<Text>().text = ""; // speaking
             }
 
         }
