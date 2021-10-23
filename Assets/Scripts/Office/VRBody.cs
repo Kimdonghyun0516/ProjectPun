@@ -9,8 +9,6 @@ using System;
 
 namespace ChiliGames.VROffice
 {
-    //This script is attached to the VR body, to ensure each part is following the correct tracker. This is done only if the body is owned by the player
-    //and replicated around the network with the Photon Transform View component
     public class VRBody : MonoBehaviourPunCallbacks
     {
         public Transform[] body;
@@ -52,7 +50,6 @@ namespace ChiliGames.VROffice
             pv = GetComponent<PhotonView>();
             recorder = GetComponent<Recorder>();
 
-            //Enable hand renderers if this is my avatar.
             if (pv.IsMine)
             {
                 lHand.enabled = true;
@@ -65,13 +62,6 @@ namespace ChiliGames.VROffice
             }
         }
 
-
-        void OnEnable()
-        {
-            PhotonNetwork.AddCallbackTarget(this);
-            Debug.Log("OnEnableVRbody");
-        }
-        // Follow trackers only if it's our body
         void Update()
         {
             if (pv.IsMine)
@@ -98,9 +88,6 @@ namespace ChiliGames.VROffice
             }
             bool mutespeakingtime = DateTime.Now.Ticks < speakingtime;
             pv.RPC("RPC_Speaking", RpcTarget.AllBuffered, mutespeakingtime);
-            //pv.RPC("RPC_Speaking", RpcTarget.AllBuffered, amp >= 0.001f && recorder.TransmitEnabled);
-
-
         }
 
         string micText;
@@ -108,12 +95,8 @@ namespace ChiliGames.VROffice
         [PunRPC]
         public void RPC_Speaking(bool time)
         {
-
-
-            micText = "말 X";
             if (time)
             {
-                //Debug.Log("isSpeaking = " + pv.ViewID + " " + isSpeaking);
                 micText = "말 O";
             }
             else
@@ -129,7 +112,6 @@ namespace ChiliGames.VROffice
             StartCoroutine(TeleportEffect());
         }
 
-        //Lerps the dissolve shader to create a teleportation effect on the avatar.
         IEnumerator TeleportEffect()
         {
             float effectDuration = 0.8f;
@@ -191,8 +173,6 @@ namespace ChiliGames.VROffice
             lHand.material.SetColor("_BaseColor", playerColor);
             rHand.material.SetColor("_BaseColor", playerColor);
         }
-
-
         public override void OnLeftRoom()
         {
             Debug.Log("OnLeftRoomVRbody");

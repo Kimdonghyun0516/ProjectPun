@@ -6,7 +6,6 @@ namespace ChiliGames
 {
     public class SetMicrophone : MonoBehaviourPun
     {
-        //detects device microphone and sets it to "Recorder" component from Photon Voice
         private void Start()
         {
             string[] devices = Microphone.devices;

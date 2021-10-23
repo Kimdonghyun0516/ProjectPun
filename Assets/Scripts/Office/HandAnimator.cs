@@ -65,15 +65,12 @@ namespace ChiliGames.VROffice
         private void Update()
         {
             if (!pv.IsMine) return;
-            // Store input
             CheckGrip();
             CheckPointer();
 
-            // Smooth input values
             SmoothFinger(pointFingers);
             SmoothFinger(gripfingers);
 
-            // Apply smoothed values
             AnimateFinger(pointFingers);
             AnimateFinger(gripfingers);
         }

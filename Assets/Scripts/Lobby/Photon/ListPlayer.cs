@@ -17,31 +17,6 @@ namespace Photon.Pun.LobbySystemPhoton
 		public override void OnJoinedRoom()
 		{
 			return;
-
-			/*Template.instance.ListRoomPanel.SetActive(false);
-			Template.instance.RoomPanel.SetActive(true);
-
-			if (playerListEntries == null)
-			{
-				playerListEntries = new Dictionary<int, GameObject>();
-			}
-
-			foreach (Player p in PhotonNetwork.PlayerList)
-			{
-				GameObject entry = Instantiate(PlayerListEntryPrefab);
-				entry.transform.SetParent(InsideRoomPanel.transform);
-				if (p.IsMasterClient)
-				{
-					entry.GetComponent<TMP_Text>().text = "<color=#a52a2aff>" + p.NickName + "</color>";
-				}
-				else
-				{
-					entry.GetComponent<TMP_Text>().text = p.NickName;
-				}
-				playerListEntries.Add(p.ActorNumber, entry);
-			}
-			Template.instance.TitleRoom.text = PhotonNetwork.CurrentRoom.Name;
-			chat.SendMsgConnection(PhotonNetwork.LocalPlayer.NickName);*/
 		}
 
 		public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -69,18 +44,6 @@ namespace Photon.Pun.LobbySystemPhoton
 
 		public override void OnLeftRoom()
 		{
-/*			Template.instance.RoomPanel.SetActive(false);
-			Template.instance.ListRoomPanel.SetActive(true);*/
-
-/*			foreach (GameObject entry in playerListEntries.Values)
-			{
-				Destroy(entry.gameObject);
-			}*/
-
-/*			playerListEntries.Clear();
-			playerListEntries = null;
-			Template.instance.ChatText.text = "";
-			PhotonNetwork.JoinLobby();*/
 		}
 	}
 }

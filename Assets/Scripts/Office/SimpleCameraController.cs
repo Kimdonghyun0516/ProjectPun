@@ -12,7 +12,7 @@ using Photon.Pun.LobbySystemPhoton;
 
 namespace UnityTemplateProjects
 {
-    public class SimpleCameraController : MonoBehaviour, IInRoomCallbacks, IMatchmakingCallbacks, ILobbyCallbacks, IConnectionCallbacks
+    public class SimpleCameraController : MonoBehaviour, IInRoomCallbacks, IMatchmakingCallbacks, ILobbyCallbacks
     {
         class CameraState
         {
@@ -124,7 +124,6 @@ namespace UnityTemplateProjects
         public void OnDisable()
         {
             PhotonNetwork.RemoveCallbackTarget(this);
-            Debug.Log("OnDisable2222");
         }
 
         void OnEnable()
@@ -133,8 +132,6 @@ namespace UnityTemplateProjects
 
             m_TargetCameraState.SetFromTransform(transform);
             m_InterpolatingCameraState.SetFromTransform(transform);
-            Debug.Log("OnEnable");
-            Debug.Log("OnEnable2");
         }
 
 
@@ -174,174 +171,6 @@ namespace UnityTemplateProjects
 #endif
             return direction;
         }        
-
-        public void OnLeaveGameButtonClicked()
-        {
-/*            PhotonNetwork.LeaveRoom();
-
-            Debug.Log("방 나가기");*/
-
-        }
-        
-/*        public override void OnLeftRoom()
-		{
-			Debug.Log("OnLeftRoom");
-
-			SceneManager.LoadScene("index");
-		}*/
-        
-
-
-
-        void Update()
-        {
-            // Exit Sample  
-
-            if (IsEscapePressed())
-            {
-                /*Application.Quit();
-				#if UNITY_EDITOR
-				UnityEditor.EditorApplication.isPlaying = false; 
-				#endif*/
-            }
-
-            // Hide and lock cursor when right mouse button pressed
-            if (IsRightMouseButtonDown())
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-
-            // Unlock and show cursor when right mouse button released
-            if (IsRightMouseButtonUp())
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
-
-            if (IsRightMouseButtonUp())
-            {
-                if (Whiting == true)
-                {
-                    openMenu(); 
-                }
-            }
-
-            // Rotation
-            if (IsCameraRotationAllowed())
-            {
-               
-                var mouseMovement = GetInputLookRotation() * Time.deltaTime * 5;
-                if (invertY)
-                    mouseMovement.y = -mouseMovement.y;
-                
-                var mouseSensitivityFactor = mouseSensitivityCurve.Evaluate(mouseMovement.magnitude);
-
-                m_TargetCameraState.yaw += mouseMovement.x * mouseSensitivityFactor;
-                m_TargetCameraState.pitch += mouseMovement.y * mouseSensitivityFactor;
-            }
-            // Translation
-            var translation = GetInputTranslationDirection() * Time.deltaTime;
-
-            // Speed up movement when shift key held
-            if (IsBoostPressed())
-            {
-                translation *= 10.0f;
-            }
-            
-            // Modify movement by a boost factor (defined in Inspector and modified in play mode through the mouse scroll wheel)
-            boost += GetBoostFactor();
-            translation *= Mathf.Pow(2.0f, boost);
-
-            m_TargetCameraState.Translate(translation);
-
-            // Framerate-independent interpolation
-            // Calculate the lerp amount, such that we get 99% of the way to our target in the specified time
-            var positionLerpPct = 1f - Mathf.Exp((Mathf.Log(1f - 0.99f) / positionLerpTime) * Time.deltaTime);
-            var rotationLerpPct = 1f - Mathf.Exp((Mathf.Log(1f - 0.99f) / rotationLerpTime) * Time.deltaTime);
-            m_InterpolatingCameraState.LerpTowards(m_TargetCameraState, positionLerpPct, rotationLerpPct);
-
-            m_InterpolatingCameraState.UpdateTransform(transform);
-        }
-
-        float GetBoostFactor()
-        {
-#if ENABLE_INPUT_SYSTEM
-            return boostFactorAction.ReadValue<Vector2>().y * 0.001f;
-#else
-            return Input.mouseScrollDelta.y * 0.02f;
-#endif
-        }
-
-        Vector2 GetInputLookRotation()
-        {
-#if ENABLE_INPUT_SYSTEM
-            return lookAction.ReadValue<Vector2>();
-#else
-            return new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * 10;
-#endif
-        }
-        bool IsBoostPressed()
-        {
-#if ENABLE_INPUT_SYSTEM
-            bool boost = Keyboard.current != null ? Keyboard.current.leftShiftKey.isPressed : false; 
-            boost |= Gamepad.current != null ? Gamepad.current.xButton.isPressed : false;
-            return boost;
-#else
-            return Input.GetKey(KeyCode.LeftShift);
-#endif
-
-        }
-        bool IsEscapePressed()
-        {
-#if ENABLE_INPUT_SYSTEM
-            return Keyboard.current != null ? Keyboard.current.escapeKey.isPressed : false; 
-#else
-            return Input.GetKey(KeyCode.Escape);
-#endif
-        }
-        bool Whiting = false;
-        public void WhiteBoardstart(bool on)
-        {
-            Debug.Log("WhiteBoardstart2" + on);
-
-            Whiting = on;
-        }
-
-        bool IsCameraRotationAllowed()
-        {
-            if (Whiting == true)
-                return false;
-
-#if ENABLE_INPUT_SYSTEM
-            bool canRotate = Mouse.current != null ? Mouse.current.rightButton.isPressed : false;
-            canRotate |= Gamepad.current != null ? Gamepad.current.rightStick.ReadValue().magnitude > 0 : false;
-            return canRotate;
-#else
-            return Input.GetMouseButton(1);
-#endif
-        }
-        bool IsRightMouseButtonDown()
-        {
-#if ENABLE_INPUT_SYSTEM
-            return Mouse.current != null ? Mouse.current.rightButton.isPressed : false;
-#else
-            return Input.GetMouseButtonDown(1);
-#endif
-        }
-
-        void openMenu()
-        {
-            Debug.Log("openMenu");
-        }
-
-        bool IsRightMouseButtonUp()
-        {
-#if ENABLE_INPUT_SYSTEM
-            return Mouse.current != null ? !Mouse.current.rightButton.isPressed : false;
-#else
-            return Input.GetMouseButtonUp(1);
-#endif
-        }
 
         public void OnPlayerEnteredRoom(Player newPlayer)
         {
@@ -424,38 +253,6 @@ namespace UnityTemplateProjects
             Debug.Log("OnLeftRoom!!!!!!!!!!!");
 
             PhotonNetwork.Disconnect();
-
-            //SceneManager.LoadScene("index");
-/*
-            Template.instance.LoginPanel.SetActive(false);
-            Template.instance.LoadingPanel.SetActive(false);
-            Template.instance.ListRoomPanel.SetActive(true);*/
-        }
-
-        public void OnConnected()
-        {
-        }
-
-        public void OnConnectedToMaster()
-        {
-        }
-
-        public void OnDisconnected(DisconnectCause cause)
-        {
-            //플랫폼 매니저가 호출 된다
-           // Debug.Log("OnDisconnected22222");
-        }
-
-        public void OnRegionListReceived(RegionHandler regionHandler)
-        {
-        }
-
-        public void OnCustomAuthenticationResponse(Dictionary<string, object> data)
-        {
-        }
-
-        public void OnCustomAuthenticationFailed(string debugMessage)
-        {
         }
     }
 }

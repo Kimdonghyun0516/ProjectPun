@@ -2,7 +2,6 @@
 using UnityEngine.XR.Interaction.Toolkit;
 using Photon.Pun;
 
-//Custom Grabbable script that is visible over Photon's network
 namespace ChiliGames
 {
     public class XRGrabbablePunOffset : XRGrabInteractable
@@ -23,7 +22,6 @@ namespace ChiliGames
         protected override void OnSelectEntered(XRBaseInteractor interactor)
         {
             base.OnSelectEntered(interactor);
-            //if it is a socket, don't offset
             if (interactor.GetComponent<XRSocketInteractor>() != null) return;
             StoreInteractor(interactor);
             MatchAttachmentPoints(interactor);

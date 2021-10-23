@@ -32,7 +32,6 @@ public class RigButtondown : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if (time >= 0)
@@ -63,10 +62,6 @@ public class RigButtondown : MonoBehaviour
                 }
             }
         }
-    
-
-
-        //CommonInput();
     }
     private void CommonInput()
     {

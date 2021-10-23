@@ -39,7 +39,6 @@ namespace ChiliGames.VROffice
         {
             if (!teleportRay) { return; }
 
-            // get the state of the teleport button
             bool isPressed = false;
 
             float input = teleportRay.activateAction.action.ReadValue<float>();
@@ -58,12 +57,10 @@ namespace ChiliGames.VROffice
             if (buttonJustPressed && teleportEnabled)
             {
                 teleportRay.gameObject.SetActive(true);
-                // this stops the reticle from appearing by the player's feet for 1 frame every time the teleport ray was activated
                 teleportReticle.SetActive(false);
             }
             else if (buttonJustReleased)
             {
-                // if we disable this object this frame, then the teleport won't work, so do it next frame
                 SetActiveNextFrame(teleportRay.gameObject, false);
             }
 

@@ -19,14 +19,11 @@ namespace Photon.Pun.LobbySystemPhoton
 		public override void OnEnable()
 		{
 			PhotonNetwork.AddCallbackTarget(this);
-
-			Debug.Log("Connectoin OnEnable True");
 		}
 
 		public override void OnDisable()
 		{
 			PhotonNetwork.RemoveCallbackTarget(this);
-			Debug.Log("Connectoin OnDisable True");
 		}
 
 		void Awake()
@@ -50,7 +47,6 @@ namespace Photon.Pun.LobbySystemPhoton
 		public void OnDisconnected()
         {
 			Debug.Log("Disconnected");
-			Debug.Log("Disconnected222");
 		}
 
 		public void OnLoginButtonClicked()
@@ -146,13 +142,6 @@ namespace Photon.Pun.LobbySystemPhoton
 		public void BtnShowOffLobby()
 		{
 			PhotonNetwork.LeaveLobby();
-		}
-
-		public void OnExit()
-		{
-			Debug.Log("OnExit");
-
-			SceneManager.LoadScene("end");
 		}
 	}
 }

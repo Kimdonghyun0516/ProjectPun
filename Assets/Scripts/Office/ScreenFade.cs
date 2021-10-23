@@ -1,12 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
-using System.Collections; // required for Coroutines
-
+using System.Collections; 
 namespace ChiliGames.VROffice
 {
-	/// <summary>
-	/// Fades the screen from black after a new scene is loaded. Fade can also be controlled mid-scene using SetUIFade and SetFadeLevel
-	/// </summary>
 	public class ScreenFade : MonoBehaviour
 	{
 		[Tooltip("Fade duration")]
@@ -20,9 +16,6 @@ namespace ChiliGames.VROffice
 		public UnityEvent onFadeIn;
 		public UnityEvent onFadeOut;
 
-		/// <summary>
-		/// The render queue used by the fade mesh. Reduce this if you need to render on top of it.
-		/// </summary>
 		public int renderQueue = 5000;
 
 		private float uiFadeAlpha = 0;
@@ -35,12 +28,8 @@ namespace ChiliGames.VROffice
 
 		public float currentAlpha { get; private set; }
 
-		/// <summary>
-		/// Automatically starts a fade in
-		/// </summary>
 		void Start()
 		{
-			// create the fade material
 			fadeMaterial = new Material(baseMaterial);
 			fadeMesh = gameObject.AddComponent<MeshFilter>();
 			fadeRenderer = gameObject.AddComponent<MeshRenderer>();
@@ -100,19 +89,12 @@ namespace ChiliGames.VROffice
 			}
 		}
 
-		/// <summary>
-		/// Start a fade out
-		/// </summary>
 		public void FadeOut()
 		{
 			StartCoroutine(Fade(0, 1));
 			onFadeOut.Invoke();
 		}
 
-
-		/// <summary>
-		/// Starts a fade in when a new level is loaded
-		/// </summary>
 		void OnLevelFinishedLoading(int level)
 		{
 			StartCoroutine(Fade(1, 0));
@@ -126,9 +108,6 @@ namespace ChiliGames.VROffice
 			}
 		}
 
-		/// <summary>
-		/// Cleans up the fade material
-		/// </summary>
 		void OnDestroy()
 		{
 			if (fadeRenderer != null)
@@ -173,10 +152,6 @@ namespace ChiliGames.VROffice
 			}
 		}
 
-		/// <summary>
-		/// Update material alpha. UI fade and the current fade due to fade in/out animations (or explicit control)
-		/// both affect the fade. (The max is taken)
-		/// </summary>
 		private void SetMaterialAlpha()
 		{
 			Color color = fadeColor;

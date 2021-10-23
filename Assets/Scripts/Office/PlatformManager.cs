@@ -12,7 +12,6 @@ using Photon.Pun.LobbySystemPhoton;
 
 namespace ChiliGames.VROffice
 {
-    //This script handles the different modes: VR or Screen (pc, tablet, phone, etc)
     public class PlatformManager : MonoBehaviourPunCallbacks
     {
         public string nameText1;
@@ -38,27 +37,22 @@ namespace ChiliGames.VROffice
 
         [SerializeField] GameObject screenBody;
 
-        //Seats
         Hashtable h = new Hashtable();
         bool initialized;
         bool seated;
         int actorNum;
 
-        //Modes
         public enum Mode { VR, Screen };
         [Tooltip("Choose the mode before building")]
         public Mode mode;
 
-        //For setting color in VRBody.cs
         public UnityEvent onSpawned;
         [HideInInspector] public int spawnPosIndex;
 
-        //Singleton to access this script from everywhere.
         public static PlatformManager instance;
 
         void Awake()
         {
-            //If not connected go to lobby to connect
             if (!PhotonNetwork.IsConnected)
             {
                 Debug.Log("IsConnected False");
@@ -66,7 +60,6 @@ namespace ChiliGames.VROffice
             instance = this;
             actorNum = PhotonNetwork.LocalPlayer.ActorNumber;
 
-            //If student connecting from phone, limit the fps to save battery. Also avoid sleep.
             if (mode == Mode.Screen)
             {
                 QualitySettings.vSyncCount = 0;
@@ -88,14 +81,12 @@ namespace ChiliGames.VROffice
             string playerName = Template.instance.PlayerNameInput.text;
             nameText1 = playerName;
 
-            //if this is the first player to connect, initialize the students list
             if (PhotonNetwork.IsMasterClient && !initialized)
             {
                 InitializePositionsList();
             }
 
 
-            //if this is the teacher, activate its rig and create the body
             if (mode == Mode.VR)
             {
                 vrRig.SetActive(true);
@@ -105,7 +96,6 @@ namespace ChiliGames.VROffice
                     SetPosition(GetFreePosition());
                 }
             }
-            //if it's a student, create it's body and sit in right position if the student list already exists
             else if (mode == Mode.Screen)
             {
                 screenRig.SetActive(true);
@@ -126,17 +116,6 @@ namespace ChiliGames.VROffice
                  SendMessageOptions.DontRequireReceiver);
         }
 
-        /*        public void SetMaleAvatar()
-                {
-                    photonView.RPC("ChangeTeacherAvatar", RpcTarget.AllBuffered, "male");
-                    localVrBody.GetComponent<PhotonView>().RPC("SetAvatarFollow", RpcTarget.AllBuffered);
-                }
-
-                public void SetFemaleAvatar()
-                {
-                    photonView.RPC("ChangeTeacherAvatar", RpcTarget.AllBuffered, "female");
-                    localVrBody.GetComponent<PhotonView>().RPC("SetAvatarFollow", RpcTarget.AllBuffered);
-                }*/
         void CreateScreenBody()
         {
             Debug.Log("Delivery : " + nameText1);
@@ -178,7 +157,6 @@ namespace ChiliGames.VROffice
                  SendMessageOptions.DontRequireReceiver);
 
             Debug.Log("Board" + btnBoard);
-            //Debug.Log("mute : " + btnBoard.GetComponent<Text>());
 
             if (boardon == true)
             {
@@ -201,13 +179,11 @@ namespace ChiliGames.VROffice
         }
 
 
-        //So we stop loading scenes if we quit app
         private void OnApplicationQuit()
         {
             StopAllCoroutines();
         }
 
-        //This creates an empty list of positions matching the number of spawn positions
         void InitializePositionsList()
         {
             if (PhotonNetwork.CurrentRoom.CustomProperties["Initialized"] == null)
@@ -221,7 +197,6 @@ namespace ChiliGames.VROffice
             PhotonNetwork.CurrentRoom.SetCustomProperties(h);
         }
 
-        //Gets the first sit that is free (that has a value of 0)
         int GetFreePosition()
         {
             for (int i = 0; i < startingPositions.Length; i++)
@@ -234,7 +209,6 @@ namespace ChiliGames.VROffice
             return -1;
         }
 
-        //Puts the user in the correspondant spawning position
         void SetPosition(int n)
         {
             if (n == -1)
@@ -254,7 +228,6 @@ namespace ChiliGames.VROffice
             }
             seated = true;
 
-            //Store in room properties what actor number was set in the position
             h["" + n] = actorNum;
             PhotonNetwork.CurrentRoom.SetCustomProperties(h);
 
@@ -262,7 +235,6 @@ namespace ChiliGames.VROffice
             onSpawned.Invoke();
         }
 
-        //This is called when the room properties are updated, for example, when the positions list is created
         public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
         {
             base.OnRoomPropertiesUpdate(propertiesThatChanged);
@@ -279,10 +251,8 @@ namespace ChiliGames.VROffice
             }
         }
 
-        //This is called when a player leaves the room, so we can free the student's place
         public override void OnPlayerLeftRoom(Player otherPlayer)
         {
-            //get the seat number of plaer that left the room, and update room properties with the free seat (value to 0)
             if (PhotonNetwork.IsMasterClient)
             {
                 for (int i = 0; i < startingPositions.Length; i++)
@@ -298,7 +268,6 @@ namespace ChiliGames.VROffice
             }
         }
 
-        //If the new master client is this client, get a copy of the room properties
         public override void OnMasterClientSwitched(Player newMasterClient)
         {
             base.OnMasterClientSwitched(newMasterClient);
@@ -308,7 +277,6 @@ namespace ChiliGames.VROffice
             }
         }
 
-        //If disconnected from server, return to lobby to reconnect.
         public override void OnDisconnected(DisconnectCause cause)
         {
             base.OnDisconnected(cause);
@@ -317,7 +285,6 @@ namespace ChiliGames.VROffice
             GoToScene(0);
         }
 
-        //Class to load scenes async
         void GoToScene(int n)
         {
             StartCoroutine(LoadScene(n));
@@ -332,7 +299,7 @@ namespace ChiliGames.VROffice
 
             yield return new WaitForSeconds(1);
             async.allowSceneActivation = true;
-            if (n == 0) //if going back to menu destroy instance
+            if (n == 0) 
             {
                 Destroy(gameObject);
             }

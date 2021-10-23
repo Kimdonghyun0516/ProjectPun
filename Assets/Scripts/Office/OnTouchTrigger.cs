@@ -4,7 +4,6 @@ using UnityEngine.Events;
 
 namespace ChiliGames
 {
-    //Simple On Trigger Enter with a cooldown
     public class OnTouchTrigger : MonoBehaviour
     {
         public UnityEvent onTriggerEnter;

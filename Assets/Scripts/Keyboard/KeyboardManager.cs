@@ -6,7 +6,6 @@ namespace VRKeyboard.Utils
 {
     public class KeyboardManager : MonoBehaviour
     {
-        //public bool isUppercase = false;
         public int maxInputLength;
 
         public InputField inputText;
@@ -32,7 +31,6 @@ namespace VRKeyboard.Utils
             {
                 key.OnKeyClicked += GenerateInput;
             }
-            //capslockFlag = isUppercase;
             CapsLock();
         }
  

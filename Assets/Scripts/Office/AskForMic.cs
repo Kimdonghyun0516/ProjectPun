@@ -5,7 +5,6 @@ namespace ChiliGames
 {
     public class AskForMic : MonoBehaviour
     {
-        // Start is called before the first frame update
         void Start()
         {
     #if PLATFORM_ANDROID

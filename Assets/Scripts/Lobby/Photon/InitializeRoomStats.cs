@@ -11,8 +11,6 @@ namespace Photon.Pun.LobbySystemPhoton
 		public PlayerInRoomIcons IconsPlayer;
 		private string TitleRoom2;
 
-
-		// Use this for initialization
 		public void Init(string NameRoom, int CountPlayer, int MaxPlayer)
 		{
 			TitleRoom.text = NameRoom;
