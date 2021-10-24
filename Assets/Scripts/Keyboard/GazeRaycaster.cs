@@ -39,12 +39,10 @@ namespace VRKeyboard.Utils
                             return;
                         }
 
-
                         if (lastTargetName == "")
                         {
                             lastTargetName = hit.transform.name;
                         }
-
 
                         if (hit.transform.name != lastTargetName)
                         {

@@ -117,7 +117,7 @@ namespace Photon.Pun.LobbySystemPhoton
 		public void OnLeaveGameButtonClicked()
 		{
 			Application.Quit();
-			UnityEditor.EditorApplication.isPlaying = false;
+			//UnityEditor.EditorApplication.isPlaying = false;
 		}
 
 		public void theJoinRoom(string roomName)
