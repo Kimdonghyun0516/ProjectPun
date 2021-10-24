@@ -73,6 +73,11 @@ namespace ChiliGames.VROffice
             int x = (int)(pos[0] * textureSize - penSizeD2);
             int y = (int)(pos[1] * textureSize - penSizeD2);
 
+            x = Mathf.Max(x, 0);
+            x = Mathf.Min(x, 2000);
+            y = Mathf.Max(y, 0);
+            y = Mathf.Min(y, 2000);
+
             //If last frame was not touching a marker, we don't need to lerp from last pixel coordinate to new, so we set the last coordinates to the new.
             if (!touchingLastFrame)
             {
@@ -92,6 +97,12 @@ namespace ChiliGames.VROffice
                 {
                     int lerpX = (int)Mathf.Lerp(lastX, (float)x, t);
                     int lerpY = (int)Mathf.Lerp(lastY, (float)y, t);
+
+                    lerpX = Mathf.Max(lerpX, 0);
+                    lerpX = Mathf.Min(lerpX, 2000);
+                    lerpY = Mathf.Max(lerpY, 0);
+                    lerpY = Mathf.Min(lerpY, 2000);
+
                     texture.SetPixels(lerpX, lerpY, penSize, penSize, color);
                 }
                 if (!everyOthrFrame)
@@ -125,7 +136,7 @@ namespace ChiliGames.VROffice
         //To clear the whiteboard.
         public void ClearWhiteboard()
         {
-            Debug.Log("ClearWhiteboard = " + pv);
+            //Debug.Log("ClearWhiteboard = " + pv);
 
             pv.RPC("RPC_ClearWhiteboard", RpcTarget.AllBuffered);
 
