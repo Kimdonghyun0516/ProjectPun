@@ -74,6 +74,7 @@ namespace ChiliGames.VROffice
             }
         }
         long speakingtime = 0;
+        bool lastspeakingstatus = false;
         private void FixedUpdate()
         {
             micIcon.text = micText;
@@ -81,20 +82,26 @@ namespace ChiliGames.VROffice
 
             float amp = recorder.LevelMeter.CurrentAvgAmp;
 
-            bool s = amp >= 0.001f && recorder.TransmitEnabled;
+            bool s = amp >= 0.005f && recorder.TransmitEnabled;
             if (s)
             {
-                speakingtime = DateTime.Now.Ticks + 1000000 * 10;
+                speakingtime = DateTime.Now.Ticks + 1000000 * (long)(10 * 1); // 1초
             }
             bool mutespeakingtime = DateTime.Now.Ticks < speakingtime;
-            pv.RPC("RPC_Speaking", RpcTarget.AllBuffered, mutespeakingtime);
+
+            if (mutespeakingtime != lastspeakingstatus) // 필터링
+            {
+                pv.RPC("RPC_Speaking", RpcTarget.AllBuffered, mutespeakingtime);
+                lastspeakingstatus = mutespeakingtime;
+            }
         }
 
-        string micText;
+        string micText = "/";
 
         [PunRPC]
         public void RPC_Speaking(bool time)
         {
+            Debug.Log("RPC_Speaking" + time);
             if (time)
             {
                 micText = "";
