@@ -63,7 +63,7 @@ namespace ChiliGames.VROffice
             penSizeD2 = n / 2;
         }
 
-        //RPC sent by the Marker class so every user gets the information to draw in whiteboard.
+        //모든 사용자가 화이트보드에 그릴 정보를 얻도록 Marker 클래스에서 RPC를 발송
         [PunRPC]
         public void DrawAtPosition(float[] pos, int _pensize, float[] _color)
         {
@@ -78,7 +78,9 @@ namespace ChiliGames.VROffice
             y = Mathf.Max(y, 0);
             y = Mathf.Min(y, 2000);
 
-            //If last frame was not touching a marker, we don't need to lerp from last pixel coordinate to new, so we set the last coordinates to the new.
+            //마지막 프레임이 마커에 닿지 않았다면
+            //마지막 픽셀 좌표에서 새 픽셀로 이동할 필요가 없으므로
+            //마지막 좌표를 새 좌표로 설정
             if (!touchingLastFrame)
             {
                 lastX = (float)x;
@@ -120,20 +122,20 @@ namespace ChiliGames.VROffice
             lastY = (float)y;
         }
 
-        //Reset the state of the whiteboard, so it doesn't interpolate/lerp last pixels drawn.
+        //화이트보드의 상태를 재설정하여 그려진 마지막 픽셀을  interpolate/lerp 하지 않도록 한다.
         [PunRPC]
         public void ResetTouch()
         {
             touchingLastFrame = false;
         }
 
-        //Receives the color from the marker
+        //마커에서 색상을 수신
         public Color[] SetColor(Color color)
         {
             return Enumerable.Repeat(color, penSize * penSize).ToArray();
         }
 
-        //To clear the whiteboard.
+        //화이트보드 지우기
         public void ClearWhiteboard()
         {
             //Debug.Log("ClearWhiteboard = " + pv);

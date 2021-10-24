@@ -46,7 +46,8 @@ namespace Photon.Pun.LobbySystemPhoton
 			foreach (RoomInfo info in roomList)
 			{
 
-				// Remove room from cached room list if it got closed, became invisible or was marked as removed
+				// 회의실이 닫혔거나 보이지 않게 되었거나 삭제된 것으로 표시된 경우
+				// 캐시된 회의실 목록에서 회의실 제거
 				if (!info.IsOpen || !info.IsVisible || info.RemovedFromList)
 				{
 					if (cacheRoomList.Contains(TmpCache))
@@ -64,12 +65,12 @@ namespace Photon.Pun.LobbySystemPhoton
 					}
 				}
 
-				// Update cached room info
+				// 캐시된 회의실 정보 업데이트
 				if (cacheRoomList.Contains(TmpCache))
 				{
 					TmpCache.rInfo = info;
 				}
-				// Add new room info to cache
+				// 캐시에 새 회의실 정보 추가
 				else
 				{
 					CachedRoom cacheRoom = new CachedRoom();

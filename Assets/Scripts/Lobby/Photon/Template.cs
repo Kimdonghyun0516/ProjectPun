@@ -4,7 +4,8 @@ using TMPro;
 
 namespace Photon.Pun.LobbySystemPhoton
 {
-	public class Template : MonoBehaviour	{
+	public class Template : MonoBehaviour
+	{
 
 		public static Template instance;
 		[Header("Input Panel")]

@@ -22,7 +22,7 @@ namespace Photon.Pun.LobbySystemPhoton
 		{
 			photonView = GetComponent<PhotonView>();
 		}
-		// Update is called once per frame
+		// 업데이트는 프레임당 한 번씩 호출
 		void Update()
 		{
 			if (Input.GetKeyDown(KeyCode.Return) && !isSelect)
