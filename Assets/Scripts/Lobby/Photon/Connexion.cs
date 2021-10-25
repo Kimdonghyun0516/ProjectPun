@@ -70,7 +70,9 @@ namespace Photon.Pun.LobbySystemPhoton
 			}
 			else
 			{
+				Template.instance.ErrorPanel.SetActive(true);
 				Debug.LogError("닉네임을 입력하세요.");
+				Template.instance.ErrorPanel.SetActive(false);
 			}
 		}
 
