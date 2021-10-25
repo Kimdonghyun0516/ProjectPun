@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9476,7 +9476,7 @@ GameObject:
   - component: {fileID: 1909792117}
   - component: {fileID: 1909792116}
   m_Layer: 5
-  m_Name: Error
+  m_Name: Login
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10538,8 +10538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InputPanel: {fileID: 1513390559}
   PlayerNameInput: {fileID: 1123883610}
-  ErrorPanel: {fileID: 1206786603}
-  Error: {fileID: 1909792114}
+  ErrorPanel: {fileID: 0}
   LoginPanel: {fileID: 54996965}
   Keyboard: {fileID: 1326231579816570}
   ListRoomPanel: {fileID: 1274996816}
