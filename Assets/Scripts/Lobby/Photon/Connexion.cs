@@ -50,8 +50,8 @@ namespace Photon.Pun.LobbySystemPhoton
 		}
 
 		public void OnLoginButtonClicked()
-		{
-
+		{			
+			Template.instance.InputPanel.SetActive(true);
 			string playerName = Template.instance.PlayerNameInput.text;
 
 			if (!playerName.Equals(""))
@@ -70,10 +70,18 @@ namespace Photon.Pun.LobbySystemPhoton
 			}
 			else
 			{
+				Template.instance.InputPanel.SetActive(false);
 				Template.instance.ErrorPanel.SetActive(true);
+				StartCoroutine(Onclick());
 				Debug.LogError("닉네임을 입력하세요.");
-				Template.instance.ErrorPanel.SetActive(false);
 			}
+		}
+
+		IEnumerator Onclick()
+        {
+			yield return new WaitForSeconds(1.5f);
+			Template.instance.ErrorPanel.SetActive(false);
+			Template.instance.InputPanel.SetActive(true);
 		}
 
 		public override void OnConnectedToMaster()

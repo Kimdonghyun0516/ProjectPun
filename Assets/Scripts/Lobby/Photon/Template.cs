@@ -11,8 +11,10 @@ namespace Photon.Pun.LobbySystemPhoton
 		[Header("Input Panel")]
 		public GameObject InputPanel;
 		public InputField PlayerNameInput;
+
 		[Header("Error Panel")]
 		public GameObject ErrorPanel;
+		public GameObject Error;
 
 		[Header("Login Panel")]
 		public GameObject LoginPanel;
